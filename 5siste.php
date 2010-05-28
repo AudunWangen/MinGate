@@ -39,24 +39,24 @@ include 'db/database.php';
 
 	 print " <table width=\"100%\" border=\"0\" bgcolor=\"#F0F3F9\">\n";
 	 print " <tr>\n";
-	 print "<td valign=top width=\"20\" align=\"left\">";
+	 print "<td valign=\"top\" width=\"20\" align=\"left\">";
 	
 	if ($status == "ubehandlet")
-			print " <img src=\"img/bullet_red.png\" alt=\"Ubehandlet\">";
+			print " <img src=\"img/bullet_red.png\" alt=\"Ubehandlet\" />";
 
 	if ($status == "behandlet")
-			print " <img src=\"img/bullet_green.png\" alt=\"Behandlet\">";
+			print " <img src=\"img/bullet_green.png\" alt=\"Behandlet\" />";
 
 	if ($status == "tilbehandling")
-			print " <img src=\"img/bullet_orange.png\" alt=\"Til behandling\">";
+			print " <img src=\"img/bullet_orange.png\" alt=\"Til behandling\" />";
 
 	 print "	</td>\n";
-	 print "<td valign=top align=\"left\">";
-	 print "<span class=\"text\">$dato&nbsp;<a href=\"sak.php?id=$id\">$feil</a><br>Sted:&nbsp;$sted</span>";
+	 print "<td valign=\"top\" align=\"left\">";
+	 print "<span class=\"text\">$dato&nbsp;<a href=\"sak.php?id=$id\">$feil</a><br />Sted:&nbsp;$sted</span>";
 	 print "	</td>\n";
 	 print " </tr>\n";
 	 print " </table>\n";
-	 print " <hr width=\"100%\">\n";
+	 print " <hr width=\"100%\" />\n";
 	 $i++;
 	 ENDWHILE;
  }

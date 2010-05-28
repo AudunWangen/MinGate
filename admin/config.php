@@ -1,9 +1,9 @@
 <?php
 
-$servername = "xxxx";
-$dbusername = "xxxx";
-$dbpassword = "xxxx";
-$dbname = "xxxx";
+$servername = "localhost";
+$dbusername = "fiksgate";
+$dbpassword = "fiksgate";
+$dbname = "fiksgate";
 
 connecttodb($servername,$dbname,$dbusername,$dbpassword);
 function connecttodb($servername,$dbname,$dbuser,$dbpassword)

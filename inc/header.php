@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="no">
 <head lang="no">
 <title>Fiks min gate!</title>
-<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
 
 <style type="text/css">
 body {
@@ -140,7 +140,7 @@ margin:0px 0 0px 0px;
     }
 </style>
 
-<script src="http://maps.google.com/maps?file=api&v=2&key=ABQIAAAAUENpVw3nKlaGrNsPINTUzhSBwtgFZ4fSReYeA62GH0Eg2z15hxRqr12OL3HpTX4KU9fbucMTH2JyxA" type="text/javascript"></script>
+<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAUENpVw3nKlaGrNsPINTUzhSBwtgFZ4fSReYeA62GH0Eg2z15hxRqr12OL3HpTX4KU9fbucMTH2JyxA" type="text/javascript"></script>
 
 <script type="text/javascript">
 	function getlatlng()
@@ -215,20 +215,18 @@ function checkform ( form )
 
 </head>
 
-<BODY>
+<body>
 
 <!-- Tabell som favner hele siden -->
-<TABLE align="left" width="675">
-<TR>
-	<TD>
-<!-- Tabell for topplinker -->
-<TABLE width="100%" bgcolor="#E0E0E0" border="0" cellpadding="3" cellspacing="1">
+<table align="left" width="675">
 <tr>
+	<td>
+<!-- Tabell for topplinker -->
+<table width="100%" bgcolor="#E0E0E0" border="0" cellpadding="3" cellspacing="1">
 <tr height="20">
-<TD bgcolor="#f0f3f9"> <A HREF="index.php">Min gate</span></A> | <A HREF="meldinn.php">Registrer sak</A> | <A HREF="visalle.php">Alle saker</A> |</FONT> <A HREF="kontakt.php">Kontakt oss</A> | <A HREF="forventninger.php">Tjenesteerklæring</A></td><td bgcolor="#f0f3f9" align="right"> <form action="sok.php" method="post" name="søk">
-<input type="text" name="streng" size="20">&nbsp;
-<input type="submit" value="Søk" class="normalbold">
-</form> </TD>
-</td>
+<td bgcolor="#f0f3f9"> <a href="index.php">Min gate</a> | <a href="meldinn.php">Registrer sak</a> | <a href="visalle.php">Alle saker</a> | <a href="kontakt.php">Kontakt oss</a> | <a href="forventninger.php">Tjenesteerklæring</a></td><td bgcolor="#f0f3f9" align="right"> <form action="sok.php" method="post" name="søk">
+<input type="text" name="streng" size="20" />&nbsp;
+<input type="submit" value="Søk" class="normalbold" />
+</form> </td>
 </tr>
 </table>

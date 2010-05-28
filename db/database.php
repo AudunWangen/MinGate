@@ -1,9 +1,9 @@
 <?
 
-$hostname = "xxxx";
-$username = "xxxx";
-$password = "xxxx";
-$dbName = "xxxx";
+$hostname = "localhost";
+$username = "fiksgate";
+$password = "fiksgate";
+$dbName = "fiksgate";
 $tbname  = "fiksgrafitti";
 
 // Connect to database
