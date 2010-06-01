@@ -21,7 +21,7 @@ $result2=mysql_query($query2);
 echo mysql_error();
 $nume=mysql_num_rows($result2);
 
-echo "<table width=\"100%\" align=\"center\" cellpadding=\"0\" cellspacing=\"0\"> <tr>";
+echo "<table width=\"100%\" align=\"center\" cellpadding=\"0\" cellspacing=\"0\">";
 
 $query=" SELECT * FROM fiksgrafitti order by id desc limit $eu, $limit ";
 $result=mysql_query($query);
@@ -33,8 +33,8 @@ while($noticia = mysql_fetch_array($result))
 if($bgcolor=='#F0F3F9'){$bgcolor='#ffffff';}
 else{$bgcolor='#F0F3F9';}
 
-//echo "<tr>";
-echo "<td align=\"left\" bgcolor=\"$bgcolor\" id=\"title\">";
+echo "<tr>";
+echo "<td align=\"left\" bgcolor=\"$bgcolor\" class=\"title\">";
 
 if ($noticia[status] == "ubehandlet")
 			print " <img src=\"img/bullet_red.png\" alt=\"Ubehandlet\" />";
@@ -65,7 +65,7 @@ for($i=0;$i < $nume;$i=$i+$limit){
 if($i <> $eu){
 echo " <a href=\"$page_name?start=$i\"><font face=\"Verdana\" size=\"2\">$l</font></a> ";
 }
-else { echo "<font face=\"Verdana\" size=\"2\" color=\"#1b6289\"><B>$l</B></font>";}        /// 
+else { echo "<font face=\"Verdana\" size=\"2\" color=\"#1b6289\"><b>$l</b></font>";}        /// 
 $l=$l+1;
 }
 

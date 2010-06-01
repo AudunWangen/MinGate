@@ -140,7 +140,7 @@ margin:0px 0 0px 0px;
     }
 </style>
 
-<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAUENpVw3nKlaGrNsPINTUzhSBwtgFZ4fSReYeA62GH0Eg2z15hxRqr12OL3HpTX4KU9fbucMTH2JyxA" type="text/javascript"></script>
+<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAziwQ4P9Qto7VoNQ5zMyz9xS1NvSkQuZCcMfLok91DzR4dG0fUxT-liTrUWv3nUJJ4ZSasDiikRW3Gw" type="text/javascript"></script>
 
 <script type="text/javascript">
 	function getlatlng()

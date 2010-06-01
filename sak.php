@@ -2,18 +2,18 @@
 include 'inc/header.php';
 ?>
 
-<BR><BR>
+<br /><br />
 <table width="675" border="0" cellpadding="3" cellspacing="0" bgcolor="#FFFFFF">
-<TR>
-	<TD width="400"><BR><span class="tittel">Kart med registert sak</span><BR>
-<BR>
+<tr>
+	<td width="400"><br /><span class="tittel">Kart med registert sak</span><br />
+<br />
 <?
 include 'kart2.php';
 ?>
-</TD>
-<TD valign="top" width="100%">
-<br>
-<span class="tittel">Informasjon om innmeldt sak</span><br><br>
+</td>
+<td valign="top" width="100%">
+<br />
+<span class="tittel">Informasjon om innmeldt sak</span><br /><br />
 <?
 include 'db/database.php';
 
@@ -28,7 +28,7 @@ include 'db/database.php';
  // Lag HTML 
  if ($number == 0)
  {
-	  print " <table width=\"100%\" border=0 bgcolor=\"#ffffff\>\n";
+	  print " <table width=\"100%\" border=\"0\" bgcolor=\"#ffffff\">\n";
 	print "<tr>\n";
 	print "<td class=\"tittel\">Det er ikke registrert noen saker</td>\n";
 	print "</tr>\n";
@@ -53,47 +53,47 @@ include 'db/database.php';
 
 	 print " <table width=\"100%\" border=\"0\" bgcolor=\"#F0F3F9\">\n";
 	 print " <tr>\n";
-	 print "<td width=\"100%\" valign=top>";
+	 print "<td width=\"100%\" valign=\"top\">";
 	
 	if ($status == "ubehandlet")
-			print " <img src=\"img/bullet_red.png\" alt=\"Ubehandlet\">";
+			print " <img src=\"img/bullet_red.png\" alt=\"Ubehandlet\" />";
 
 	if ($status == "behandlet")
-			print " <img src=\"img/bullet_green.png\" alt=\"Behandlet\">";
+			print " <img src=\"img/bullet_green.png\" alt=\"Behandlet\" />";
 
 	if ($status == "tilbehandling")
-			print " <img src=\"img/bullet_orange.png\" alt=\"Til behandling\">";
+			print " <img src=\"img/bullet_orange.png\" alt=\"Til behandling\" />";
 	
-	 print "&nbsp;<span class=\"text\">$dato&nbsp;<B>$feil</b><br></span><br><B>Sted:</B>&nbsp;$sted<br><br>$problem<br><br>";
+	 print "&nbsp;<span class=\"text\">$dato&nbsp;<b>$feil</b><br /></span><br /><b>Sted:</b>&nbsp;$sted<br /><br />$problem<br /><br />";
 	 if ($kommentar == "")
 			print "";
 		else
-			 print "Kommentar fra kommunen:<br><span class=\"red\">$kommentar<br>\n";
+			 print "Kommentar fra kommunen:<br /><span class=\"red\">$kommentar<br />\n";
 
 	 print "	</td>\n";
 	 print " </tr>\n";
 	 print " <tr>\n";
-	 print "<td width=\"100%\" valign=top>";
+	 print "<td width=\"100%\" valign=\"top\">";
 	
 	 	 if ($bilde == "")
 			print "";
 		else
-			print "<br><img src=\"http://www.e-kommune.com/fiksgate/upload/$bilde\" width=190 border=1 alt=\"$bilde\"><br><a href=\"http://www.e-kommune.com/fiksgate/upload/$bilde\" target=\"_new\">Se stort bilde</a>";
+			print "<br /><img src=\"http://www.e-kommune.com/fiksgate/upload/$bilde\" width=190 border=1 alt=\"$bilde\" /><br /><a href=\"http://www.e-kommune.com/fiksgate/upload/$bilde\" target=\"_new\">Se stort bilde</a>";
 
 	 print "	</td>\n";
 	 print " </tr>\n";
 	 print " </table>\n";
-	 print " <hr width=\"100%\">\n";
+	 print " <hr width=\"100%\" />\n";
 	 $i++;
 	 ENDWHILE;
  }
 ?>
-<A HREF="visalle.php" alt="Se alle saker">Se alle saker</A>
-<BR><BR><BR>
-</TD>
+<a href="visalle.php">Se alle saker</a>
+<br /><br /><br />
+</td>
 
-</TR>
-</TABLE>
+</tr>
+</table>
 <?
 include 'inc/footer.php';
 ?>
