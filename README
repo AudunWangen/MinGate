@@ -1,0 +1,9 @@
+== TODO
+
+- Centralize configuration and make it more flexible. The administration-part of the page can reuse many of the parts used for regular users.
+- Rewrite the whole page without use of tables.
+- Fix Google Maps HTML validation errors.
+- External CSS for all pages.
+- Make parts more embed-friendly, e.g. the map and list of registered problems.
+
+== Suggested features
