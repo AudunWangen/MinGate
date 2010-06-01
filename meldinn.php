@@ -3,16 +3,16 @@ include 'inc/header.php';
 ?>
 
 <table width="675" border="0" cellpadding="3" cellspacing="0" bgcolor="#FFFFFF">
-<TR>
-	<TD width="675"><BR><span class="tittel">Mitt n&aelig;romr&aring;de</span><br><br><span class="text">Her kan du melde inn mangler eller feil som feks. hull i veg, søppel og tagging m.m.<br>Sakene behandles fortløpende av kommunen.</span><BR>
-	</TD>
-</TR>
-</TABLE>
-<br>
+<tr>
+	<td width="675"><br /><span class="tittel">Mitt n&aelig;romr&aring;de</span><br /><br /><span class="text">Her kan du melde inn mangler eller feil som feks. hull i veg, søppel og tagging m.m.<br />Sakene behandles fortløpende av kommunen.</span><br />
+	</td>
+</tr>
+</table>
+<br />
 <table width="675" border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
 <tr>
 <td width="400" valign="top">
-<BR>&nbsp;<span class="tittel">Registrer sak her</span>
+<br />&nbsp;<span class="tittel">Registrer sak her</span>
 
 <script type="text/javascript">
 function popup (el)
@@ -40,7 +40,7 @@ $message = "
 </head>
 <body>
 <p>Feilmelding: $feil</p>
-<p>Adresse: $sted</p><br>
+<p>Adresse: $sted</p><br />
 <p>Type problem: $problem</p>
 <p>Navn: $navn</p>
 <p>E-post: $epost</p>
@@ -61,7 +61,7 @@ if ($ny != "ny")
 
 $ip = getenv("REMOTE_ADDR") ; 
 
-	print "<br><br>\n";
+	print "<br /><br />\n";
 	print "<table width=\"100%\" border=0 valign=\"top\" bgcolor=\"#FFFFFF\">\n";
 
 	print "<form action=\"meldinn.php\" method=\"post\" name=\"fiksgrafitti\" enctype=\"multipart/form-data\"  onsubmit=\"return checkform(this);\">\n";
@@ -71,28 +71,28 @@ $ip = getenv("REMOTE_ADDR") ;
 
 	print "<tr>\n";
 	print "	<td width=\"75\" class=\"normal\">\n";
-	print "	<span class=\"text\"><B>Feil:</B>\n";
+	print "	<span class=\"text\"><b>Feil:</b>\n";
 	print "	</td>\n";
 	print "	<td>\n";
-	print " <SELECT NAME=\"feil\" onchange=\"popup(this)\"> \n";
-	print " <OPTION VALUE=\"Ingen valgt\" SELECTED>Velg\n";
-	print " <OPTION VALUE=\"gatelys\">Gatelys virker ikke\n";
-	print " 	<OPTION VALUE=\"Hull i veg\">Hull i veg\n";
-	print " 	<OPTION VALUE=\"Grafitti-Tagging\">Grafitti-Tagging\n";
-	print " 	<OPTION VALUE=\"Skilt-Trafikk\">Skilt/Trafikk\n";
-	print " 	<OPTION VALUE=\"Vann og avløp\">Vann og avl&oslash;p\n";
-	print " 	<OPTION VALUE=\"Park\">Park\n";
-	print " 	<OPTION VALUE=\"Renovasjon\">Renovasjon\n";
-	print " 	<OPTION VALUE=\"Friluft\">Friluft\n";
-	print " 	<OPTION VALUE=\"Annet\">Annet\n";
-	print " 	</SELECT>\n";
+	print " <select name=\"feil\" onchange=\"popup(this)\"> \n";
+	print " <option value=\"Ingen valgt\" SELECTED>Velg\n";
+	print " <option value=\"gatelys\">Gatelys virker ikke\n";
+	print " 	<option value=\"Hull i veg\">Hull i veg\n";
+	print " 	<option value=\"Grafitti-Tagging\">Grafitti-Tagging\n";
+	print " 	<option value=\"Skilt-Trafikk\">Skilt/Trafikk\n";
+	print " 	<option value=\"Vann og avløp\">Vann og avl&oslash;p\n";
+	print " 	<option value=\"Park\">Park\n";
+	print " 	<option value=\"Renovasjon\">Renovasjon\n";
+	print " 	<option value=\"Friluft\">Friluft\n";
+	print " 	<option value=\"Annet\">Annet\n";
+	print " 	</select>\n";
 	
 	print "	</td>\n";
 	print "</tr>\n";
 
 	print "<tr>\n";
 	print "	<td width=\"75\" class=\"normal\">\n";
-	print "	<span class=\"text\"><B>Adresse:</B>\n";
+	print "	<span class=\"text\"><b>Adresse:</b>\n";
 	print "	</td>\n";
 	print "	<td>\n";
 	print " <input type=\"text\" name=\"sted\" size=\"25\" class=\"normal\">\n";
@@ -103,27 +103,27 @@ $ip = getenv("REMOTE_ADDR") ;
 	print "<table width=\"100%\" border=0 valign=\"top\" bgcolor=\"#FFFFFF\">\n";  // 
 	print "<tr>\n";
 	print "	<td width=\"\" class=\"normal\" valign=\"\">\n";
-	print "	<span class=\"text\">Klikk på kartet for å registrere lengde- og breddegrad på den innmeldte saken.<br><br>Du kan klikke flere ganger for å rette koordinatene.\n";
+	print "	<span class=\"text\">Klikk på kartet for å registrere lengde- og breddegrad på den innmeldte saken.<br /><br />Du kan klikke flere ganger for å rette koordinatene.\n";
 	
-	print "<br>\n";
+	print "<br />\n";
 	print "<table width=\"90%\" border=0 valign=\"top\" bgcolor=\"#FFFFFF\">\n";  // 
 	print "<tr>\n";
 	print "	<td width=\"50%\" class=\"normal\" valign=\"top\">\n";
-	print "	<br><span class=\"text\"><B>Breddegrad:</B>\n";
+	print "	<br /><span class=\"text\"><b>Breddegrad:</b>\n";
 	print "	</td>\n";
 	print "	<td width=\"50%\" class=\"normal\" valign=\"top\">\n";
-	print "	<br><span class=\"text\"><B>Lengdegrad:</B>\n";
+	print "	<br /><span class=\"text\"><b>Lengdegrad:</b>\n";
 	print "	</td>\n";
 	print "</tr>\n";
 	print "<tr>\n";
 	print "	<td  width=\"50%\" class=\"normal\" valign=\"top\">\n";
 	print "<div id=\"stylized\" class=\"myform\">\n";
-	print "<INPUT SIZE=\"6\" TYPE=\"TEXT\" ID=\"latbox\" NAME=\"lat\">\n";
+	print "<input size=\"6\" type=\"text\" id=\"latbox\" name=\"lat\">\n";
 	print "</div>\n";
 	print "	</td>\n";
 	print "	<td  width=\"50%\" class=\"normal\" valign=\"top\">\n";
 	print "<div id=\"stylized\" class=\"myform\">\n";
-	print "<INPUT SIZE=\"6\" TYPE=\"TEXT\" ID=\"lonbox\" NAME=\"lon\">\n";
+	print "<input size=\"6\" type=\"text\" id=\"lonbox\" name=\"lon\">\n";
 	print "</div>\n";
 	print "	</td>\n";
 	print "</tr>\n";
@@ -137,12 +137,12 @@ $ip = getenv("REMOTE_ADDR") ;
 	print "<table width=\"100%\" border=0 valign=\"top\" bgcolor=\"#FFFFFF\">\n";  // 
 	print "<tr>\n";
 	print "	<td class=\"normal\" valign=\"top\">\n";
-	print "	<span class=\"text\"><B>Problem:</B>&nbsp;\n";
+	print "	<span class=\"text\"><b>Problem:</b>&nbsp;\n";
 	print "	</td>\n";
 	print "</tr>\n";
 	print "<tr>\n";
 	print "	<td>\n";
-	print "	<TEXTAREA NAME=\"problem\" ROWS=\"5\" COLS=\"30\"></TEXTAREA>\n";
+	print "	<textarea name=\"problem\" rows=\"5\" cols=\"30\"></textarea>\n";
 	print "	</td>\n";
 	print "	</tr>\n";
 	print "</table>\n"; 
@@ -150,7 +150,7 @@ $ip = getenv("REMOTE_ADDR") ;
 	print "<table width=\"100%\" border=0 valign=\"top\" bgcolor=\"#FFFFFF\">\n";
 	print "<tr>\n";
 	print "	<td class=\"normal\" width=\"75\">\n";
-	print "	<span class=\"text\"><B>Navn:</B>\n";
+	print "	<span class=\"text\"><b>Navn:</b>\n";
 	print "	</td>\n";
 	print "	<td>\n";
 	print "	<input type=\"text\" name=\"navn\" size=\"25\" class=\"normal\">\n";
@@ -159,7 +159,7 @@ $ip = getenv("REMOTE_ADDR") ;
 	
 	print "<tr>\n";
 	print "	<td class=\"normal\" width=\"75\">\n";
-	print "	<span class=\"text\"><B>Epost:</B> *\n";
+	print "	<span class=\"text\"><b>Epost:</b> *\n";
 	print "	</td>\n";
 	print "	<td>\n";
 	print "	<input type=\"text\" name=\"epost\" size=\"25\" class=\"normal\">\n";
@@ -168,18 +168,18 @@ $ip = getenv("REMOTE_ADDR") ;
 	
 	print "<tr>\n";
 	print "	<td class=\"normal\" width=\"75\">\n";
-	print "	<span class=\"text\"><B>Tlf:</B> *\n";
+	print "	<span class=\"text\"><b>Tlf:</b> *\n";
 	print "	</td>\n";
 	print "	<td>\n";
 	print "	<input type=\"text\" name=\"tlf\" size=\"25\" class=\"normal\">\n";
-	print "	<br>Din ip-adresse: $ip</td>\n";
+	print "	<br />Din ip-adresse: $ip</td>\n";
 	print "</tr>\n";
 	print "</table>\n"; 
 
 	print "<table width=\"100%\" border=0 valign=\"top\" bgcolor=\"#FFFFFF\">\n";  // 
 	print "<tr>\n";
 	print "	<td class=\"normal\" width=\"75\">\n";
-	print "	<span class=\"text\"><B>Bilde:</B>\n";
+	print "	<span class=\"text\"><b>Bilde:</b>\n";
 	print "	</td>\n";
 	print "<tr>\n";
 	print "</tr>\n";
@@ -233,13 +233,13 @@ mail($to,$subject,$message,$headers);
  
    // Upload the file to your specified path.
    if(move_uploaded_file($_FILES['bilde']['tmp_name'],$upload_path . $bilde))
-         echo '<br><br>Ditt bilde ble lastet opp, se ditt bilde her: <a href="' . $upload_path . $bilde . '" title="Your File" target="_top">her</a>'; // It worked.
+         echo '<br /><br />Ditt bilde ble lastet opp, se ditt bilde her: <a href="' . $upload_path . $bilde . '" title="Your File" target="_top">her</a>'; // It worked.
       else
          echo ''; // It failed :(.
 
 $query = "INSERT INTO fiksgrafitti (id, dato, sted, lat, lon, feil, status, problem, navn, epost, tlf, ip, bilde) VALUES ('$id','$dato','$sted','$lat','$lon','$feil','$status','$problem','$navn','$epost','$tlf','$ip','$bilde')";
 
-echo "<br><br>Takk for din registrering!<br><br>Vi setter stor pris på ditt sosiale engasjement som hjelper oss med å yte bedre tjenester til våre innbyggere.";
+echo "<br /><br />Takk for din registrering!<br /><br />Vi setter stor pris på ditt sosiale engasjement som hjelper oss med å yte bedre tjenester til våre innbyggere.";
 
 	
 	$result = MYSQL_QUERY($query);
@@ -248,8 +248,8 @@ echo "<br><br>Takk for din registrering!<br><br>Vi setter stor pris på ditt sos
 ?>
 
 
-<td width="400" valign="top" align="center"><BR>
-<span class="tittel">Usikker på adressen? Bruk kartet.</span><BR><BR>
+<td width="400" valign="top" align="center"><br />
+<span class="tittel">Usikker på adressen? Bruk kartet.</span><br /><br />
 
 <body>
 <div id="map" style="width: 380px; height: 380px"></div>
@@ -272,13 +272,13 @@ GEvent.addListener(map, 'click', function(overlay, point) {
 });
     //]]>
     </script>
-Naviger i kartet ved å holde venstreknappen<br>inne og bevege musen
+Naviger i kartet ved å holde venstreknappen<br />inne og bevege musen
 </td>
 
-</TD>
+</td>
 <td></td>
-</TR>
-</TABLE>
+</tr>
+</table>
 
 <?
 include 'inc/footer.php';
