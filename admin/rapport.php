@@ -22,7 +22,7 @@ include 'inc/header.php';
 <TR>
 	<TD valign="top">
 <?
-require "config.php";    
+require "../config.php";    
 
 $page_name="index.php";
 $start=$_GET['start'];

@@ -1,6 +1,6 @@
 
 <?
-require "inc/config.php";           // 
+require "config.php";           // 
 
 $page_name="visalle.php"; //  
 $start=$_GET['start'];

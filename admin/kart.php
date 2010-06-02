@@ -14,10 +14,10 @@ GEvent.addListener(marker, "click", function() {marker.openInfoWindowHtml(html);
 return marker;
 };
 <?php
-$hostname = "xxxx";
-$username = "xxxx";
-$password = "xxxx";
-$dbName = "xxxx";
+$hostname = "localhost";
+$username = "fiksgate";
+$password = "fiksgate";
+$dbName = "fiksgate";
 
 $link =	MYSQL_CONNECT ($hostname, $username, $password) OR PRINT "Unable to connect to database<BR>"; 
 mysql_selectdb($dbName, $link) or PRINT "Unable to select database<BR>";

@@ -8,7 +8,7 @@
 
 <body bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#800080" alink="#ff0000">
 <?
-require "config.php";  
+require "../config.php";  
 
 $page_name="index.php"; 
 $start=$_GET['start'];
