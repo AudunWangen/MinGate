@@ -21,7 +21,7 @@ include 'kart2.php';
 <br>
 <span class="tittel">Informasjon om innmeldt sak</span><br><br>
 <?
-include 'db/database.php';
+include 'config.php';
 
 	// 
 	$today = date("Ymd");

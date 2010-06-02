@@ -15,7 +15,7 @@ include 'kart_sok.php';
 	<span class="tittel">Treff i søk</span><BR><BR>
 <?
 
-include 'db/database.php';
+include 'config.php';
 	
 	$today = date("Ymd");
     $query = "select * from $tbname where dato LIKE '%$streng%' or sted LIKE '%$streng%' or feil LIKE '%$streng%' or problem LIKE '%$streng%' or navn LIKE '%$streng%'";

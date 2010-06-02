@@ -32,7 +32,7 @@ if(el.value.toLowerCase()=='gatelys')
 
 <?
 
-include 'db/database.php';
+include 'config.php';
 
 	// Build SQL query
 	$idag  = date ("d.m.y", mktime (0,0,0,date("m")  ,date("d") ,date("Y")));

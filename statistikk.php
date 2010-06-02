@@ -1,6 +1,6 @@
 
 <?php
-include 'db/database.php';
+include 'config.php';
 
 			$query = "SELECT COUNT(*) FROM fiksgrafitti ";
                 $result = mysql_query($query) or die(mysql_error());

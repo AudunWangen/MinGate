@@ -15,7 +15,7 @@ include 'kart2.php';
 <br />
 <span class="tittel">Informasjon om innmeldt sak</span><br /><br />
 <?
-include 'db/database.php';
+include 'config.php';
 
 	// Build and execute SQL query
 	$today = date("Ymd");
