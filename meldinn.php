@@ -24,7 +24,7 @@ if(el.value.toLowerCase()=='gatelys')
 
 <?
 
-include 'config.php';
+//include 'config.php';
 
 	// Build SQL query
 	$idag  = date ("d.m.y", mktime (0,0,0,date("m")  ,date("d") ,date("Y")));
@@ -260,7 +260,7 @@ echo "<br /><br />Takk for din registrering!<br /><br />Vi setter stor pris på 
     //<![CDATA[
  
     var map = new GMap(document.getElementById("map"));
-    map.centerAndZoom(new GPoint(9.67002, 59.10055), 6);
+    map.centerAndZoom(new GPoint(<?php echo GOOGLE_CENTERPOINT_LON . ", " . GOOGLE_CENTERPOINT_LAT; ?>), 6);
  
 	map.addControl(new GLargeMapControl());
 	map.addControl(new GMapTypeControl());

@@ -5,7 +5,7 @@ var map = new GMap2(document.getElementById("map"));
 map.addControl(new GLargeMapControl());
 map.addControl(new GMapTypeControl());
 map.addControl(new GScaleControl());
-map.setCenter(new GLatLng(59.1054878597522, 9.674835205078125), 11, G_NORMAL_MAP);
+map.setCenter(new GLatLng(<?php echo GOOGLE_CENTERPOINT_LAT . ", " . GOOGLE_CENTERPOINT_LON . ")," . GOOGLE_ZOOM_LEVEL; ?>, G_NORMAL_MAP);
 function createMarker(point, number)
 {
 var marker = new GMarker(point);

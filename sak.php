@@ -1,4 +1,5 @@
 <?
+ini_set('display_errors','true');
 include 'inc/header.php';
 ?>
 
@@ -15,10 +16,12 @@ include 'kart2.php';
 <br />
 <span class="tittel">Informasjon om innmeldt sak</span><br /><br />
 <?
-include 'config.php';
+//include 'config.php';
 
 	// Build and execute SQL query
 	$today = date("Ymd");
+    mysql_connect($hostname, $username, $password) OR DIE("Får ikke kontakt med $dbname");
+@mysql_select_db("$dbName") or die("Kan ikke velge database");
     $query = "select * from fiksgrafitti where id = $id"; 
 
 	$result = MYSQL_QUERY($query);

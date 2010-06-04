@@ -11,15 +11,15 @@ include 'tilbakemelding.php';
 </td>
 
 <td valign="top">
-<span class="tittel">Kontakt FIXME kommune</span><br /><br />
-<span class="text">Porsgrunn kommune<br /><br />
+<span class="tittel">Kontakt <?php echo COMPANY_NAME; ?></span><br /><br />
+<span class="text"><?php echo COMPANY_NAME; ?><br /><br />
 
-Sentralbord: FIXME<br /><br />
-SMS: FIXME til 1804 <img src="img/phone.png" alt="telefon-ikon" />| <a href="http://FIXME" target="_top">Nettprat</a> <img src="img/user_comment.png" alt="chat-ikon" /> <br /><br /> 
+Sentralbord: <?php echo COMPANY_PHONE; ?><br /><br />
+SMS: <?php echo COMPANY_SMS_CODE; ?> til <?php echo COMPANY_SMS_PHONE; ?> <img src="img/phone.png" alt="telefon-ikon" />| <a href="<?php echo COMPANY_CHAT_URI; ?>" target="_top">Nettprat</a> <img src="img/user_comment.png" alt="chat-ikon" /> <br /><br /> 
 
-<a href="mailto:postmottak@FIXME.kommune.no">postmottak@FIXME.kommune.no</a><br /><br />
-Postadresse: Pb. FIXME, 0000 FIXME<br />
-Bes&oslash;ksadresse: FIXMEvegen 1<br /><br /><br /></span>
+<a href="mailto:<?php echo COMPANY_EMAIL; ?>"><?php echo COMPANY_EMAIL; ?></a><br /><br />
+Postadresse: <?php echo COMPANY_MAIL_ADDRESS; ?><br />
+Bes&oslash;ksadresse: <?php echo COMPANY_VISIT_ADDRESS; ?><br /><br /><br /></span>
 
 </td>
 </tr>
