@@ -1,4 +1,4 @@
-<?php include("/home/ekommune/www/fiksgate/admin/login.php"); ?>
+<?php include("login.php"); ?>
 <?
 include 'inc/header.php';
 ?>
@@ -11,12 +11,12 @@ include 'kart.php';
 ?>
 </TD>
 <TD valign="top" width="485">
-<br><br><br><?
+<br><br><br><?php
 include 'list.php';
 ?>
 </TD>
 </TR>
 </TABLE>
-<?
+<?php
 include 'inc/footer.php';
 ?>

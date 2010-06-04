@@ -1,6 +1,6 @@
 
 <?
-require "config.php";           // 
+//require "config.php";           // 
 
 $page_name="visalle.php"; //  
 $start=$_GET['start'];
@@ -15,7 +15,8 @@ $this1 = $eu + $limit;
 $back = $eu - $limit; 
 $next = $eu + $limit; 
 
-
+mysql_connect($hostname, $username, $password) OR DIE("Får ikke kontakt med $dbname");
+@mysql_select_db("$dbName") or die("Kan ikke velge database");
 $query2=" SELECT * FROM fiksgrafitti  ";
 $result2=mysql_query($query2);
 echo mysql_error();
@@ -27,7 +28,7 @@ $query=" SELECT * FROM fiksgrafitti order by id desc limit $eu, $limit ";
 $result=mysql_query($query);
 echo mysql_error();
 
-
+$bgcolor="#ffffff";
 while($noticia = mysql_fetch_array($result))
 {
 if($bgcolor=='#F0F3F9'){$bgcolor='#ffffff';}

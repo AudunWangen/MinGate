@@ -1,6 +1,6 @@
 <?
 
-include 'db/database.php';
+//include 'db/database.php';
 
 
 	MYSQL_CONNECT($hostname, $username, $password) OR DIE("Får ikke kontakt med $dbname"); 

@@ -1,3 +1,6 @@
+<?php
+include '../config.php';
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="no">
@@ -126,7 +129,7 @@ margin:0px 0 0px 0px;
       behavior:url(#default#VML);
     }
     </style>
-    <script src="http://maps.google.com/maps?file=api&v=3&key=ABQIAAAAziwQ4P9Qto7VoNQ5zMyz9xS1NvSkQuZCcMfLok91DzR4dG0fUxT-liTrUWv3nUJJ4ZSasDiikRW3Gw" type="text/javascript"></script>
+    <script src="http://maps.google.com/maps?file=api&v=3&key=<?php echo $googleapikey ?>" type="text/javascript"></script>
 
 
 	
