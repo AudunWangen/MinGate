@@ -2,17 +2,10 @@
 include 'inc/header.php';
 ?>
 
-<table width="675" border="0" cellpadding="3" cellspacing="0" bgcolor="#FFFFFF">
-<tr>
-	<td width="675"><br /><span class="tittel">Mitt n&aelig;romr&aring;de</span><br /><br /><span class="text">Her kan du melde inn mangler eller feil som feks. hull i veg, søppel og tagging m.m.<br />Sakene behandles fortløpende av kommunen.</span><br />
-	</td>
-</tr>
-</table>
-<br />
-<table width="675" border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
-<tr>
-<td width="400" valign="top">
-<br />&nbsp;<span class="tittel">Registrer sak her</span>
+<h2>Mitt n&aelig;romr&aring;de</h2>
+<p>Her kan du melde inn mangler eller feil som feks. hull i veg, søppel og tagging m.m.</p><p>Sakene behandles fortløpende av kommunen.</p>
+
+<h2>Registrer sak her</h2>
 
 <script type="text/javascript">
 function popup (el)
@@ -61,150 +54,57 @@ if ($ny != "ny")
 
 $ip = getenv("REMOTE_ADDR") ; 
 
-	print "<br /><br />\n";
-	print "<table width=\"100%\" border=0 valign=\"top\" bgcolor=\"#FFFFFF\">\n";
+	print "<div class=\"registrationform\">\n";
 
 	print "<form action=\"meldinn.php\" method=\"post\" name=\"fiksgrafitti\" enctype=\"multipart/form-data\"  onsubmit=\"return checkform(this);\">\n";
-	print "<input type=\"hidden\" name=\"ny\" value=\"ny\">\n";
-	print "<input type=\"hidden\" name=\"status\" value=\"ubehandlet\">\n";
-	print "<input type=\"hidden\" name=\"ip\" value=\"$ip\">\n";
+	print "<input type=\"hidden\" name=\"ny\" value=\"ny\" />\n";
+	print "<input type=\"hidden\" name=\"status\" value=\"ubehandlet\" />\n";
+	print "<input type=\"hidden\" name=\"ip\" value=\"$ip\" />\n";
 
-	print "<tr>\n";
-	print "	<td width=\"75\" class=\"normal\">\n";
-	print "	<span class=\"text\"><b>Feil:</b>\n";
-	print "	</td>\n";
-	print "	<td>\n";
-	print " <select name=\"feil\" onchange=\"popup(this)\"> \n";
-	print " <option value=\"Ingen valgt\" SELECTED>Velg\n";
-	print " <option value=\"gatelys\">Gatelys virker ikke\n";
-	print " 	<option value=\"Hull i veg\">Hull i veg\n";
-	print " 	<option value=\"Grafitti-Tagging\">Grafitti-Tagging\n";
-	print " 	<option value=\"Skilt-Trafikk\">Skilt/Trafikk\n";
-	print " 	<option value=\"Vann og avløp\">Vann og avl&oslash;p\n";
-	print " 	<option value=\"Park\">Park\n";
-	print " 	<option value=\"Renovasjon\">Renovasjon\n";
-	print " 	<option value=\"Friluft\">Friluft\n";
-	print " 	<option value=\"Annet\">Annet\n";
+	print "	<label for=\"feil\">Feil</label>\n";
+	print " <select name=\"feil\" id=\"feil\" onchange=\"popup(this)\"> \n";
+	print " <option value=\"Ingen valgt\" selected=\"selected\">Velg</option>\n";
+	print " <option value=\"gatelys\">Gatelys virker ikke</option>\n";
+	print " 	<option value=\"Hull i veg\">Hull i veg</option>\n";
+	print " 	<option value=\"Grafitti-Tagging\">Grafitti-Tagging</option>\n";
+	print " 	<option value=\"Skilt-Trafikk\">Skilt/Trafikk</option>\n";
+	print " 	<option value=\"Vann og avløp\">Vann og avl&oslash;p</option>\n";
+	print " 	<option value=\"Park\">Park</option>\n";
+	print " 	<option value=\"Renovasjon\">Renovasjon</option>\n";
+	print " 	<option value=\"Friluft\">Friluft</option>\n";
+	print " 	<option value=\"Annet\">Annet</option>\n";
 	print " 	</select>\n";
 	
-	print "	</td>\n";
-	print "</tr>\n";
-
-	print "<tr>\n";
-	print "	<td width=\"75\" class=\"normal\">\n";
-	print "	<span class=\"text\"><b>Adresse:</b>\n";
-	print "	</td>\n";
-	print "	<td>\n";
-	print " <input type=\"text\" name=\"sted\" size=\"25\" class=\"normal\">\n";
-	print "	</td>\n";
-	print "</tr>\n";
-	print "</table>\n"; 
-
-	print "<table width=\"100%\" border=0 valign=\"top\" bgcolor=\"#FFFFFF\">\n";  // 
-	print "<tr>\n";
-	print "	<td width=\"\" class=\"normal\" valign=\"\">\n";
-	print "	<span class=\"text\">Klikk på kartet for å registrere lengde- og breddegrad på den innmeldte saken.<br /><br />Du kan klikke flere ganger for å rette koordinatene.\n";
-	
-	print "<br />\n";
-	print "<table width=\"90%\" border=0 valign=\"top\" bgcolor=\"#FFFFFF\">\n";  // 
-	print "<tr>\n";
-	print "	<td width=\"50%\" class=\"normal\" valign=\"top\">\n";
-	print "	<br /><span class=\"text\"><b>Breddegrad:</b>\n";
-	print "	</td>\n";
-	print "	<td width=\"50%\" class=\"normal\" valign=\"top\">\n";
-	print "	<br /><span class=\"text\"><b>Lengdegrad:</b>\n";
-	print "	</td>\n";
-	print "</tr>\n";
-	print "<tr>\n";
-	print "	<td  width=\"50%\" class=\"normal\" valign=\"top\">\n";
+	print "	<label for=\"sted\">Adresse</label>\n";
+	print " <input type=\"text\" name=\"sted\" id=\"sted\" size=\"25\" class=\"normal\" />\n";
+	print "	<p>Klikk på kartet for å registrere lengde- og breddegrad på den innmeldte saken.</p><p>Du kan klikke flere ganger for å rette koordinatene.</p>\n";
+	print "	<label for=\"latbox\">Breddegrad</label>\n";
 	print "<div id=\"stylized\" class=\"myform\">\n";
-	print "<input size=\"6\" type=\"text\" id=\"latbox\" name=\"lat\">\n";
+	print "<input size=\"6\" type=\"text\" id=\"latbox\" name=\"lat\" />\n";
 	print "</div>\n";
-	print "	</td>\n";
-	print "	<td  width=\"50%\" class=\"normal\" valign=\"top\">\n";
+	print "	<label for=\"lonbox\">Lengdegrad</label>\n";
 	print "<div id=\"stylized\" class=\"myform\">\n";
-	print "<input size=\"6\" type=\"text\" id=\"lonbox\" name=\"lon\">\n";
+	print "<input size=\"6\" type=\"text\" id=\"lonbox\" name=\"lon\" />\n";
 	print "</div>\n";
-	print "	</td>\n";
-	print "</tr>\n";
-	print "</div>\n";
-	print "</table>\n"; 
 
-	print "	</td>\n";
-	print "</tr>\n";
-	print "</table>\n"; 
+	print "	<label for=\"problem\">Problem</label>\n";
+	print "	<textarea name=\"problem\" id=\"problem\" rows=\"5\" cols=\"30\"></textarea>\n";
+	print "	<label for=\"navn\">Navn</label>\n";
+	print "	<input type=\"text\" name=\"navn\" id=\"navn\" size=\"25\" class=\"normal\" />\n";
+	print "	<label for=\"epost\">Epost</label> *\n";
+	print "	<input type=\"text\" name=\"epost\" id=\"epost\" size=\"25\" class=\"normal\"/>\n";
+	print "	<label for=\"tlf\">Tlf</label> *\n";
+	print "	<input type=\"text\" name=\"tlf\" id=\"tlf\" size=\"25\" class=\"normal\" />\n";
+	print "	<p>Din ip-adresse: $ip</p>\n";
 
-	print "<table width=\"100%\" border=0 valign=\"top\" bgcolor=\"#FFFFFF\">\n";  // 
-	print "<tr>\n";
-	print "	<td class=\"normal\" valign=\"top\">\n";
-	print "	<span class=\"text\"><b>Problem:</b>&nbsp;\n";
-	print "	</td>\n";
-	print "</tr>\n";
-	print "<tr>\n";
-	print "	<td>\n";
-	print "	<textarea name=\"problem\" rows=\"5\" cols=\"30\"></textarea>\n";
-	print "	</td>\n";
-	print "	</tr>\n";
-	print "</table>\n"; 
+	print "	<label for=\"bilde\">Bilde:</label>\n";
+	print "	<input name=\"bilde\" id=\"bilde\" size=\"20\" type=\"file\" value=\"$bilde\" />\n";
 
-	print "<table width=\"100%\" border=0 valign=\"top\" bgcolor=\"#FFFFFF\">\n";
-	print "<tr>\n";
-	print "	<td class=\"normal\" width=\"75\">\n";
-	print "	<span class=\"text\"><b>Navn:</b>\n";
-	print "	</td>\n";
-	print "	<td>\n";
-	print "	<input type=\"text\" name=\"navn\" size=\"25\" class=\"normal\">\n";
-	print "	</td>\n";
-	print "</tr>\n";
-	
-	print "<tr>\n";
-	print "	<td class=\"normal\" width=\"75\">\n";
-	print "	<span class=\"text\"><b>Epost:</b> *\n";
-	print "	</td>\n";
-	print "	<td>\n";
-	print "	<input type=\"text\" name=\"epost\" size=\"25\" class=\"normal\">\n";
-	print "	</td>\n";
-	print "</tr>\n";
-	
-	print "<tr>\n";
-	print "	<td class=\"normal\" width=\"75\">\n";
-	print "	<span class=\"text\"><b>Tlf:</b> *\n";
-	print "	</td>\n";
-	print "	<td>\n";
-	print "	<input type=\"text\" name=\"tlf\" size=\"25\" class=\"normal\">\n";
-	print "	<br />Din ip-adresse: $ip</td>\n";
-	print "</tr>\n";
-	print "</table>\n"; 
-
-	print "<table width=\"100%\" border=0 valign=\"top\" bgcolor=\"#FFFFFF\">\n";  // 
-	print "<tr>\n";
-	print "	<td class=\"normal\" width=\"75\">\n";
-	print "	<span class=\"text\"><b>Bilde:</b>\n";
-	print "	</td>\n";
-	print "<tr>\n";
-	print "</tr>\n";
-	print "	<td>\n";
-	print "	<input name=\"bilde\" size=\"20\" type=\"file\" value=\"$bilde\">\n";
-	print "	</td>\n";
-	print "</tr>\n";
-	print "</table>\n"; 
-
-
-	print "<table width=\"100%\" border=0 valign=\"top\" bgcolor=\"#FFFFFF\">\n";  // 
 	//Submit knapp
-	print "<tr>\n";
-
-	print "	<td>\n";
-	print "	<input type=\"submit\" value=\"Registrer sak\" class=\"normalbold\">\n";
-	print "	</td>\n";
-
-	print "	<td class=\"normal\" width=\"200\">\n";
+	print "	<input type=\"submit\" value=\"Registrer sak\" class=\"normalbold\" />\n";
 	print "	<span class=\"small\">* Vises ikke p&aring; websiden</span>\n";
-	print "	</td>\n";
-	
-	print "</tr>\n";
-	print "</table>\n";
 	print "</form>\n";
+	print "</div>";
 }
 else
 {
@@ -248,10 +148,8 @@ echo "<br /><br />Takk for din registrering!<br /><br />Vi setter stor pris på 
 ?>
 
 
-<td width="400" valign="top" align="center"><br />
-<span class="tittel">Usikker på adressen? Bruk kartet.</span><br /><br />
+<h2>Usikker på adressen? Bruk kartet.</h2>
 
-<body>
 <div id="map" style="width: 380px; height: 380px"></div>
 <div style="width: 380px;">
 </div>
@@ -272,13 +170,7 @@ GEvent.addListener(map, 'click', function(overlay, point) {
 });
     //]]>
     </script>
-Naviger i kartet ved å holde venstreknappen<br />inne og bevege musen
-</td>
-
-</td>
-<td></td>
-</tr>
-</table>
+<p>Naviger i kartet ved å holde venstreknappen inne og bevege musen</p>
 
 <?
 include 'inc/footer.php';
