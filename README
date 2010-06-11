@@ -60,9 +60,19 @@ $ nano /var/www/config.php
 
 PS! Noe konfigurasjon kan ligge igjen i andre filer også. Dette blir rettet fortløpende.
 
+I Apache-konfigurasjonen må du slå på register globals, for eksempel slik:
+        DocumentRoot /var/www
+        <Directory />
+                Options FollowSymLinks
+                AllowOverride None
+                php_admin_flag register_globals on
+	</Directory>
+
 Endre rettighetene på filene til brukeren som Apache kjører under:
 $ chown -R www-data:www-data /var/www
 $ chmod -R 777 /var/www/upload
+
+For å logge inn i admin-grensesnittet går du til http://localhost/admin. Brukernavn og passord er admin, og bør endres. Dette kan gjøres i /admin/login.php.
 
 1.4 GOOGLE MAPS
 
