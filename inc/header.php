@@ -8,141 +8,6 @@ include 'config.php';
 <title>Fiks min gate!</title>
 <meta http-equiv="content-type" content="text/html;charset=utf-8" />
 
-<style type="text/css">
-body {
-
-	height: auto !important;
-	height: 100%;
-	min-height: 100%;
-	font-size: 66.0%;
-	font-family:Verdana;
-}
-
-A:link
-{
-	font-family: verdana, arial, helvetica, sans-serif;
-	FONT-SIZE: 12px;
-	color:#1b6289; 
-	text-decoration:underline;
-}
-
-A:visited
-{
-	font-family: verdana, arial, helvetica, sans-serif;
-	FONT-SIZE: 12px;
-	color:#1b6289; 
-	text-decoration:underline;
-}
-
-A:active
-{
-	font-family: verdana, arial, helvetica, sans-serif;
-	FONT-SIZE: 12px;
-	color:#1b6289; 
-	text-decoration:underline;
-}
-
-A:hover
-{ 
-	font-family: verdana, arial, helvetica, sans-serif;
-	FONT-SIZE: 12px;
-	color:#000000; 
-	text-decoration: underline;
-}
-.tittel
-{ 
-	font-family: verdana, arial, helvetica, sans-serif;
-	FONT-SIZE: 12px;
-	color:#000000;
-	FONT-WEIGHT: bold;
-}
-.text
-{ 
-	font-family: verdana, arial, helvetica, sans-serif;
-	FONT-SIZE: 11px;
-	color:#000000; 
-}
-.text_i
-{ 
-	font-family: verdana, arial, helvetica, sans-serif;
-	FONT-SIZE: 9px;
-	color:#000000; 
-}
-.red
-{ 
-	font-family: verdana, arial, helvetica, sans-serif;
-	FONT-SIZE: 11px;
-	color:#FF001A; 
-}
-.small
-{ 
-	font-family: verdana, arial, helvetica, sans-serif;
-	FONT-SIZE: 10px;
-	color:#000000; 
-}
-.small8
-{ 
-	font-family: verdana, arial, helvetica, sans-serif;
-	FONT-SIZE: 8px;
-	color:#808080; 
-}
-.dato
-{ 
-	font-family: verdana, arial, helvetica, sans-serif;
-	FONT-SIZE: 10px;
-	color:#000000; 
-}
-.heading
-{ 
-	font-family: verdana, arial, helvetica, sans-serif;
-	FONT-SIZE: 12px;
-	color:#000000; 
-	FONT-WEIGHT: bold;
-}
-.heading-stor
-{ 
-	font-family: verdana, arial, helvetica, sans-serif;
-	FONT-SIZE: 16px;
-	color:#000000; 
-	FONT-WEIGHT: bold;
-}
-.heading14
-{ 
-	font-family: verdana, arial, helvetica, sans-serif;
-	FONT-SIZE: 14px;
-	color:#FFFFFF; 
-	text-decoration: underline;
-}
-.heading14-b
-{ 
-	font-family: verdana, arial, helvetica, sans-serif;
-	FONT-SIZE: 14px;
-	color:#000000; 
-	text-decoration: underline;
-}
-.heading12
-{ 
-	font-family: verdana, arial, helvetica, sans-serif;
-	FONT-SIZE: 12px;
-	color:#FFFFFF; 
-	text-decoration: underline;
-}
-#stylized input{
-float:left;
-font-size:12px;
-padding:0px 0px;
-border:solid 1px #FFFFFF;
-width:100px;
-margin:0px 0 0px 0px;
-}
-</style>
-
-<style type="text/css">
-    v\:* {
-      behavior:url(#default#VML);
-    }
-</style>
-
 <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=<?php echo $googleapikey ?>" type="text/javascript"></script>
 
 <script type="text/javascript">
@@ -219,6 +84,7 @@ function checkform ( form )
 </head>
 
 <body>
+<h1>Min Gate</h1>
 <div id="main">
 <ol>
 	<li><a href="index.php">Min gate</a></li>
