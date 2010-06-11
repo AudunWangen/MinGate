@@ -1,4 +1,69 @@
-== TODO AND SUGGESTED FEATURES
+INNHOLDSFORTEGNELSE
+
+==========================================
+
+1. INSTALLASJON AV MINGATE
+1.1 FORHÅNDSKRAV
+1.2 OPPSETT AV MYSQL
+1.3 KONFIGURASJON AV MINGATE
+
+2. PLANLAGTE ENDRINGER
+
+===========================================
+
+1. INSTALLASJON AV MINGATE
+
+1.1 FORHÅNDSKRAV
+
+MinGate krever en webtjener med PHP og MySQL. Bruker du Apache på en Debian-basert distribusjon, kan du installere det du trenger med følgende kommandoer (som root):
+
+$ aptitude update
+$ aptitude install apache2 libapache2-mod-php5 php5-mysql mysql-server
+$ /etc/init.d/apache2 restart
+
+1.2 OPPSETT AV MYSQL
+
+Dersom du ikke er komfortabel med å bruke kommandoer på Linux kan du gjøre hele denne jobben ved hjelp av PHPMyAdmin. Denne må i så fall installeres i tillegg med kommandoen
+$ aptitude install phpmyadmin
+
+Passordet root-brukeren på MySQL blir automatisk satt blankt, og dette bør endres.
+
+$ mysql -u root
+mysql> use mysql;
+mysql> update user set password=password('nyttpassord') where user='root';
+mysql> flush privileges;
+mysql> exit
+
+Så lager du en ny database og gir en ny brukerkonto fulle tilganger til denne databasen:
+
+$ mysql -u root -pnyttpassord
+mysql> create database fiksgate;
+mysql> grant all privileges on fiksgate.* to fiksgate@localhost identified by 'fiksgate';
+mysql> flush privileges;
+mysql> exit
+
+Til slutt setter vi opp en ny tabell i databasen hvor alle dataene blir lagret:
+
+$ mysql -u fiksgate -p -h localhost fiksgate < /sti-til-fiksgate-sql/fiksgate.sql
+Enter password: fiksgate
+
+1.3 KONFIGURASJON AV MINGATE
+
+Alle kommandoer kjøres som root dersom ikke annet er oppgitt og gjelder for Apache.
+
+Kopier inn filene for MinGate under /var/www/:
+$ cp -r /sti-til-filene/* /var/www/
+
+Endre instillinger for database, kommune, kontaktperson etc i config.php med en teksteditor:
+$ nano /var/www/config.php
+
+Endre rettighetene på filene til brukeren som Apache kjører under:
+$ chown -R www-data:www-data /var/www
+$ chmod -R 777 /var/www/upload
+
+Nå skal det være klart for å begynne å bruke MinGate.
+
+2. PLANLAGTE ENDRINGER
 
 - Centralize configuration and make it more flexible. The administration-part of the page can reuse many of the parts used for regular users.
 - Rewrite the whole page without use of tables.
