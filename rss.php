@@ -9,10 +9,10 @@
 
 <?
 
-$hostname = "xxxx";
-$username = "xxxx";
-$password = "xxxx";
-$dbName = "xxxx";
+$hostname = "localhost";
+$username = "fiksgate";
+$password = "fiksgate";
+$dbName = "fiksgate";
 $tbname  = "fiksgrafitti";
 
 // Connect to database
@@ -28,7 +28,7 @@ while($result = mysql_fetch_array($doGet)){
      <item>
         <title> <?=htmlentities(strip_tags($result['sted'])); ?></title>
 		<description> <?=htmlentities(strip_tags($result['sted'])); ?></description>
-         <link>http://www.e-kommune.com/fiksgate/sak.php?id=p?=$result['id'];?></link>
+         <link>http://fiksgata.kongsvinger.no/fiksgate/sak.php?id=<?=$result['id'];?></link>
 		 <pubDate> <?=htmlentities(strip_tags($result['dato'])); ?></pubDate>
         
      </item>  

@@ -6,6 +6,7 @@ INNHOLDSFORTEGNELSE
 1.1 FORHÅNDSKRAV
 1.2 OPPSETT AV MYSQL
 1.3 KONFIGURASJON AV MINGATE
+1.4 GOOGLE MAPS
 
 2. PLANLAGTE ENDRINGER
 
@@ -57,17 +58,25 @@ $ cp -r /sti-til-filene/* /var/www/
 Endre instillinger for database, kommune, kontaktperson etc i config.php med en teksteditor:
 $ nano /var/www/config.php
 
+PS! Noe konfigurasjon kan ligge igjen i andre filer også. Dette blir rettet fortløpende.
+
 Endre rettighetene på filene til brukeren som Apache kjører under:
 $ chown -R www-data:www-data /var/www
 $ chmod -R 777 /var/www/upload
 
-Nå skal det være klart for å begynne å bruke MinGate.
+1.4 GOOGLE MAPS
+
+For at kartet skal fungere må man registrere en Google Maps API-nøkkel. Denne kan du få her:
+http://code.google.com/intl/no/apis/maps/signup.html
+
+API-nøkkelen legger du inn i config.php
 
 2. PLANLAGTE ENDRINGER
 
 - Centralize configuration and make it more flexible. The administration-part of the page can reuse many of the parts used for regular users.
 - Rewrite the whole page without use of tables.
 - Fix Google Maps HTML validation errors.
+- Support for other map services.
 - External CSS for all pages.
 - Make parts more embed-friendly, e.g. the map and list of registered problems.
 - Localization by removing all hardcoded strings and using a translation file (Wordpress-style).
