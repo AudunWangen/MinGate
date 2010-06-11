@@ -22,61 +22,55 @@ $result2=mysql_query($query2);
 echo mysql_error();
 $nume=mysql_num_rows($result2);
 
-echo "<table width=\"100%\" align=\"center\" cellpadding=\"0\" cellspacing=\"0\">";
+echo "<ol>";
 
 $query=" SELECT * FROM fiksgrafitti order by id desc limit $eu, $limit ";
 $result=mysql_query($query);
 echo mysql_error();
 
-$bgcolor="#ffffff";
+$bgcolor="even";
 while($noticia = mysql_fetch_array($result))
 {
-if($bgcolor=='#F0F3F9'){$bgcolor='#ffffff';}
-else{$bgcolor='#F0F3F9';}
+if($bgcolor=='odd'){$bgcolor='even';}
+else{$bgcolor='odd';}
 
-echo "<tr>";
-echo "<td align=\"left\" bgcolor=\"$bgcolor\" class=\"title\">";
+echo "<li class=\"$bgcolor";
 
-if ($noticia[status] == "ubehandlet")
-			print " <img src=\"img/bullet_red.png\" alt=\"Ubehandlet\" />";
+if ($noticia[status] == "ubehandlet") {
+			print " red\">";
+	} elseif ($noticia[status] == "behandlet") {
+			print " green\">";
+	} elseif ($noticia[status] == "tilbehandling") {
+			print " yellow\">";
+	} else {
+			print "\">";
+	}
 
-	if ($noticia[status] == "behandlet")
-			print " <img src=\"img/bullet_green.png\" alt=\"Behandlet\" />";
-
-	if ($noticia[status] == "tilbehandling")
-			print " <img src=\"img/bullet_orange.png\" alt=\"Til behandling\" />";
-
-echo "<font face=\"Verdana\" size=\"2\">$noticia[dato]&nbsp;&nbsp; $noticia[feil]<br />Adresse: $noticia[sted]</font><br /><a href=\"sak.php?id=$noticia[id]\">Les mer</a><br /><br /></td>"; 
-echo "</tr>";
+echo "$noticia[dato] <a href=\"sak.php?id=$noticia[id]\"> $noticia[feil]</a><br />Adresse: $noticia[sted]"; 
+echo "</li>";
 }
-echo "</table>";
+echo "</ol>";
 
 if($nume > $limit ){ 
 
-echo "<table align =\"center\" width=\"100%\"><tr><td  align=\"left\" width=\"30%\">";
-
 if($back >=0) { 
-print "<a href=\"$page_name?start=$back\"><font face=\"Verdana\" size=\"2\">Forrige side</font></a>"; 
+print "<a href=\"$page_name?start=$back\">Forrige side</a>"; 
 } 
 
-echo "</td><td align=\"center\" width=\"30%\">";
 $i=0;
 $l=1;
 for($i=0;$i < $nume;$i=$i+$limit){
 if($i <> $eu){
-echo " <a href=\"$page_name?start=$i\"><font face=\"Verdana\" size=\"2\">$l</font></a> ";
+echo " <a href=\"$page_name?start=$i\">$l</a> ";
 }
-else { echo "<font face=\"Verdana\" size=\"2\" color=\"#1b6289\"><b>$l</b></font>";}        /// 
+else { echo "<b>$l</b>";}        /// 
 $l=$l+1;
 }
 
 
-echo "</td><td  align=\"right\" width=\"30%\">";
-
 if($this1 < $nume) { 
-print "<a href='$page_name?start=$next'><font face=\"Verdana\" size=\"2\">Neste side</font></a>";} 
-echo "</td></tr></table>";
+print "<a href='$page_name?start=$next'>Neste side</a>";} 
 
 }
 ?>
-<center><span class="small8">Arkiv kodet av <a href="http://www.plus2net.com" target="_new"><span class="small8">plus2net.com</span></a></span></center>
+<p>Arkiv kodet av <a href="http://www.plus2net.com" target="_new">plus2net.com</a></p>
