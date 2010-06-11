@@ -219,17 +219,16 @@ function checkform ( form )
 </head>
 
 <body>
+<div id="main">
+<ol>
+	<li><a href="index.php">Min gate</a></li>
+	<li><a href="meldinn.php">Registrer sak</a></li>
+	<li><a href="visalle.php">Alle saker</a></li>
+	<li><a href="kontakt.php">Kontakt oss</a></li>
+	<li><a href="forventninger.php">Tjenesteerklæring</a></li>
+</ol>
 
-<!-- Tabell som favner hele siden -->
-<table align="left" width="675">
-<tr>
-	<td>
-<!-- Tabell for topplinker -->
-<table width="100%" bgcolor="#E0E0E0" border="0" cellpadding="3" cellspacing="1">
-<tr height="20">
-<td bgcolor="#f0f3f9"> <a href="index.php">Min gate</a> | <a href="meldinn.php">Registrer sak</a> | <a href="visalle.php">Alle saker</a> | <a href="kontakt.php">Kontakt oss</a> | <a href="forventninger.php">Tjenesteerklæring</a></td><td bgcolor="#f0f3f9" align="right"> <form action="sok.php" method="post" name="søk">
+<form action="sok.php" method="post" name="søk">
 <input type="text" name="streng" size="20" />&nbsp;
 <input type="submit" value="Søk" class="normalbold" />
-</form> </td>
-</tr>
-</table>
+</form>
