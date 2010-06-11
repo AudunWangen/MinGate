@@ -84,8 +84,7 @@ function checkform ( form )
 </head>
 
 <body>
-<h1>Min Gate</h1>
-<div id="main">
+<div id="header">
 <ol>
 	<li><a href="index.php">Min gate</a></li>
 	<li><a href="meldinn.php">Registrer sak</a></li>
@@ -98,3 +97,4 @@ function checkform ( form )
 <input type="text" name="streng" size="20" />&nbsp;
 <input type="submit" value="Søk" class="normalbold" />
 </form>
+</div>

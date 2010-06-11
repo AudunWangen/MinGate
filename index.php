@@ -2,18 +2,17 @@
 include 'inc/header.php';
 ?>
 
-<!-- Introtekst til siden -->
 <div id="intro">
-<h2>Mitt nærområde</h2>
+<!-- Introtekst til siden -->
+<h1>Mitt nærområde</h1>
 <p>Her kan du melde inn mangler eller feil som feks. hull i veg, søppel og tagging m.m.<br />Sakene behandles fortløpende av kommunen.
 </p>
 
-<!-- Hvordan melde inn en sak -->
 <h2>Hvordan melde inn en ny sak?</h2>
 
-<p><img src="img/page_add.png" alt="Legg til sak-ikon" /> <strong>Fyll ut skjema:</strong>
-For å melde inn en sak til kommunen, <a href="meldinn.php">klikk her</a>.
+<p><img src="img/page_add.png" alt="Legg til sak-ikon" />Du kan selv melde inn feil til kommunen ved å <a href="meldinn.php">fylle ut et enkelt skjema</a>.
 </p>
+</div>
 
 <h2>Kart med registerte saker</h2>
 <!-- Start: Viser kartløsningen fra Google -->
@@ -22,6 +21,7 @@ include 'kart.php';
 ?>
 <!-- Slutt kartløsningen fra Google -->
 
+<div id="rightmenu">
 <!-- Start siste 5 saker som er meldt inn -->
 <h2>Siste 5 innmeldte saker</h2>
 <?
@@ -33,15 +33,20 @@ include '5siste.php';
 <a href="visalle.php">Se alle registrerte saker</a>
 
 <!-- Start informasjon om fargekoder -->
-<br /><b>Fargekoder viser status på saker.</b><br /><img src="img/bullet_red.png" alt="Rød prikk" />Rød - Ikke behandlet<br /><img src="img/bullet_orange.png" alt="Gul prikk" />Gul - Under behandling<br /><img src="img/bullet_green.png" alt="Grønn prikk" />Grønn - Ferdig behandlet
+<h2>Fargekoder viser status på saker</h2>
+<ul>
+<li class="red">Rød - Ikke behandlet</li>
+<li class="yellow">Gul - Under behandling</li>
+<li class="green">Grønn - Ferdig behandlet</li>
+</ul>
 <!-- Slutt informasjon om fargekoder -->
 
 <!-- Start statistikk for alle saker som er meldt inn -->
-	<br /><br /><?
+	<?
 	include 'statistikk.php';
 	?>
 <!-- Slutt statistikk for alle saker som er meldt inn -->
-
+</div>
 <?
 include 'inc/footer.php';
 ?>

@@ -16,14 +16,11 @@
  // HTML ut
  if ($number == 0)
  {
-	  print " <table width=\"100%\" border=0 bgcolor=\"#ffffff\>\n";
-	print "<tr>\n";
-	print "<td class=\"tittel\" bgcolor=\"#ffffff\>Det er ikke registrert noen saker</td>\n";
-	print "</tr>\n";
-	 print " </table>\n";
+	print "<p>Det er ikke registrert noen saker</p>\n";
  }
  else
  {
+	  print "<ol class=\"caselist\">\n";
 	 $i = 0;
 	 WHILE ($i < $number):
 	 $id = mysql_result($result,$i,"id");
@@ -37,27 +34,21 @@
 	 $epost = mysql_result($result,$i,"epost");
 	 $tlf = mysql_result($result,$i,"tlf");
 
-	 print " <table width=\"100%\" border=\"0\" bgcolor=\"#F0F3F9\">\n";
-	 print " <tr>\n";
-	 print "<td valign=\"top\" width=\"20\" align=\"left\">";
+	 print "<li";
 	
-	if ($status == "ubehandlet")
-			print " <img src=\"img/bullet_red.png\" alt=\"Ubehandlet\" />";
-
-	if ($status == "behandlet")
-			print " <img src=\"img/bullet_green.png\" alt=\"Behandlet\" />";
-
-	if ($status == "tilbehandling")
-			print " <img src=\"img/bullet_orange.png\" alt=\"Til behandling\" />";
-
-	 print "	</td>\n";
-	 print "<td valign=\"top\" align=\"left\">";
-	 print "<span class=\"text\">$dato&nbsp;<a href=\"sak.php?id=$id\">$feil</a><br />Sted:&nbsp;$sted</span>";
-	 print "	</td>\n";
-	 print " </tr>\n";
-	 print " </table>\n";
-	 print " <hr width=\"100%\" />\n";
+	if ($status == "ubehandlet") {
+			print " class=\"red\">\n";
+	} elseif ($status == "behandlet") {
+			print " class=\"orange\">\n";
+	} elseif ($status == "tilbehandling") {
+			print " class=\"green\">\n";
+	} else {
+			print ">\n";
+	}
+	 print "$dato <a href=\"sak.php?id=$id\">$feil</a><br />Sted: $sted";
+	 print "</li>\n";
 	 $i++;
 	 ENDWHILE;
+	 print "</ol>\n";
  }
 ?>
