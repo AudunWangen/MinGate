@@ -15,7 +15,7 @@ include 'inc/header.php';
 </div>
 
 <h2>Kart med registerte saker</h2>
-<div class="leftcontent">
+<div id="leftcontent">
 <!-- Start: Viser kartløsningen fra Google -->
 <?
 include 'kart.php';

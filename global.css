@@ -1,23 +1,24 @@
 /* Main elements for the site */
 
 body {
-	background: #fcfcfc;
+	background: #fefefe;
 	color: #111;
-	font-size: 1em;
+	font-size: 0.7em;
 	font-style: normal;
-	font-family: Verdana, Tahoma, Arial, Sans-serif;
+	font-family: Verdana, Arial, Helvetica, Sans-serif;
 }
 
 h1 {
-	font-size: 2em;
+	font-size: 1.2em;
 }
 
 h2 {
-	font-size: 1.6em;
+	font-size: 1.1em;
 }
 
 h3 {
-	font-size: 1.2em;
+	font-size: 1.0em;
+	font-weight: bold;
 }
 
 blockquote {
@@ -29,21 +30,24 @@ em, strong, b {
 
 /* links */
 
+a:link {
+	color: #4d70a0;
+	text-decoration: underline;
+}
+
 a:visited {
-	color: #b52;
+	color: #4d70a0;
 	text-decoration: underline;
 }
 
 a:hover {
-	color: #555;
+	color: #4d70a0;
 	text-decoration: underline;
 }
 
 a:active {
-	color: #555;
+	color: #4d70a0;
 }
-
-/* lists */
 
 /* divs and positioning */
 
@@ -52,7 +56,7 @@ a:active {
 }
 
 #wrap {
-	width: 80%;
+	width: 900px;
 	padding: 2px 0px;
 	float: left;
 	background: transparent;
@@ -60,7 +64,15 @@ a:active {
 	background: transparent;
 }
 
-.leftcontent {
+#topmenu {
+	background: #f0f3f9;
+	color: #000;
+	font-size: 1.1em;
+	padding: 0.7em;
+	border: 1px solid #000;
+}
+
+#leftcontent {
 	float: left;
 	clear: both;
 }
@@ -68,4 +80,30 @@ a:active {
 #rightmenu {
 	padding: 5px 0px;
 	float:right;
+}
+
+/* Menu lists */
+
+#topmenu ol {
+	list-style: none inside;
+	display: inline;
+	margin: 0em;
+	padding: 0em;
+	clear: both;
+}
+
+#topmenu li {
+	display:inline;
+}
+
+#topmenu li:before {
+	content: "| ";
+}
+#topmenu li:first-child:before {
+	content: "";
+}
+
+#topmenu form {
+	float: right;
+	clear: both;
 }

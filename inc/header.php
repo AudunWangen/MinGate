@@ -85,7 +85,7 @@ function checkform ( form )
 
 <body>
 <div id="wrap">
-<div id="menu">
+<div id="topmenu">
 <ol>
 	<li><a href="index.php">Min gate</a></li>
 	<li><a href="meldinn.php">Registrer sak</a></li>
