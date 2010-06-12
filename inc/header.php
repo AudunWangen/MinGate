@@ -7,7 +7,7 @@ include 'config.php';
 <head lang="no">
 <title>Fiks min gate!</title>
 <meta http-equiv="content-type" content="text/html;charset=utf-8" />
-
+<link rel="stylesheet" type="text/css" href="global.css" />
 <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=<?php echo $googleapikey ?>" type="text/javascript"></script>
 
 <script type="text/javascript">
@@ -84,7 +84,8 @@ function checkform ( form )
 </head>
 
 <body>
-<div id="header">
+<div id="wrap">
+<div id="menu">
 <ol>
 	<li><a href="index.php">Min gate</a></li>
 	<li><a href="meldinn.php">Registrer sak</a></li>

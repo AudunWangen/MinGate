@@ -15,11 +15,13 @@ include 'inc/header.php';
 </div>
 
 <h2>Kart med registerte saker</h2>
+<div class="leftcontent">
 <!-- Start: Viser kartløsningen fra Google -->
 <?
 include 'kart.php';
 ?>
 <!-- Slutt kartløsningen fra Google -->
+</div>
 
 <div id="rightmenu">
 <!-- Start siste 5 saker som er meldt inn -->

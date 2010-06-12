@@ -1,4 +1,5 @@
-<!-- Footer med </table> fra header -->
-<div class="footer">L&oslash;sningen er utviklet av IKT-avdelingen i Porsgrunn kommune.</div>
+<!-- Footer -->
+<div id="footer">L&oslash;sningen er utviklet av IKT-avdelingen i Porsgrunn kommune.</div>
+</div>
 </body>
 </html>

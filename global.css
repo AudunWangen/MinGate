@@ -1,0 +1,71 @@
+/* Main elements for the site */
+
+body {
+	background: #fcfcfc;
+	color: #111;
+	font-size: 1em;
+	font-style: normal;
+	font-family: Verdana, Tahoma, Arial, Sans-serif;
+}
+
+h1 {
+	font-size: 2em;
+}
+
+h2 {
+	font-size: 1.6em;
+}
+
+h3 {
+	font-size: 1.2em;
+}
+
+blockquote {
+}
+
+em, strong, b {
+	font-weight: bold;
+}
+
+/* links */
+
+a:visited {
+	color: #b52;
+	text-decoration: underline;
+}
+
+a:hover {
+	color: #555;
+	text-decoration: underline;
+}
+
+a:active {
+	color: #555;
+}
+
+/* lists */
+
+/* divs and positioning */
+
+#footer {
+	clear: both;	
+}
+
+#wrap {
+	width: 80%;
+	padding: 2px 0px;
+	float: left;
+	background: transparent;
+	max-width: 80em;
+	background: transparent;
+}
+
+.leftcontent {
+	float: left;
+	clear: both;
+}
+
+#rightmenu {
+	padding: 5px 0px;
+	float:right;
+}
