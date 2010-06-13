@@ -52,11 +52,13 @@ a:active {
 /* divs and positioning */
 
 #footer {
-	clear: both;	
+	clear: both;
+	text-align: center;
+	font-size: 0.9em;	
 }
 
 #wrap {
-	width: 900px;
+	width: 687px;
 	padding: 2px 0px;
 	float: left;
 	background: transparent;
@@ -69,16 +71,18 @@ a:active {
 	color: #000;
 	font-size: 1.1em;
 	padding: 0.7em;
-	border: 1px solid #000;
+	border: 1px solid #ddd;
 }
 
 #leftcontent {
+	padding: 0em;
 	float: left;
 	clear: both;
 }
 
 #rightmenu {
-	padding: 5px 0px;
+	padding: 0em;
+	width: 40%;
 	float:right;
 }
 
@@ -106,4 +110,54 @@ a:active {
 #topmenu form {
 	float: right;
 	clear: both;
+	margin-top: -0.3em;
+}
+
+ol.caselist {
+	list-style: none inside;
+	margin: 0em;
+	padding: 0em;
+}
+
+.caselist li {
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
+	border-bottom: 1px solid #ddd;
+	background-position: 0 0.5em; 
+}
+
+
+.caselist li:nth-child(odd) {
+	background-color: #f0f3f9;
+}
+
+li.red, li.yellow, li.green {
+	padding-left: 2em;
+	list-style-type: none;
+	background-repeat: no-repeat;
+}
+
+li.red {
+	background-image: url("img/bullet_red.png"); 
+}
+
+li.yellow {
+	background-image: url("img/bullet_orange.png");
+}
+
+li.green {
+	background-image: url("img/bullet_green.png");
+}
+
+/* Special */
+
+.highlight {
+	background: #f0f3f9;
+	padding: 0.3em 0.3em;
+}
+
+.imgmargin {
+	margin: 0.3em;
+	position: relative;
+	top: 0.5em;
 }

@@ -10,12 +10,12 @@ include 'inc/header.php';
 
 <h2>Hvordan melde inn en ny sak?</h2>
 
-<p><img src="img/page_add.png" alt="Legg til sak-ikon" />Du kan selv melde inn feil til kommunen ved å <a href="meldinn.php">fylle ut et enkelt skjema</a>.
+<p class="highlight"><img class="imgmargin" src="img/page_add.png" alt="Legg til sak-ikon" />Du kan selv melde inn feil til kommunen ved å <a href="meldinn.php">fylle ut et enkelt skjema</a>.
 </p>
 </div>
 
-<h2>Kart med registerte saker</h2>
 <div id="leftcontent">
+<h2>Kart med registerte saker</h2>
 <!-- Start: Viser kartløsningen fra Google -->
 <?
 include 'kart.php';
