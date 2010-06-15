@@ -57,6 +57,7 @@ $ip = getenv("REMOTE_ADDR") ;
 	print "<div class=\"registrationform\">\n";
 
 	print "<form action=\"meldinn.php\" method=\"post\" name=\"fiksgrafitti\" enctype=\"multipart/form-data\"  onsubmit=\"return checkform(this);\">\n";
+	print "<fieldset title=\"feilmelding\" id=\"feilmelding\"";
 	print "<input type=\"hidden\" name=\"ny\" value=\"ny\" />\n";
 	print "<input type=\"hidden\" name=\"status\" value=\"ubehandlet\" />\n";
 	print "<input type=\"hidden\" name=\"ip\" value=\"$ip\" />\n";
@@ -74,7 +75,9 @@ $ip = getenv("REMOTE_ADDR") ;
 	print " 	<option value=\"Friluft\">Friluft</option>\n";
 	print " 	<option value=\"Annet\">Annet</option>\n";
 	print " 	</select>\n";
-	
+	print "</fieldset>";
+
+	print "<fieldset title=\"feilsted\" id=\"feilsted\"";	
 	print "	<label for=\"sted\">Adresse</label>\n";
 	print " <input type=\"text\" name=\"sted\" id=\"sted\" size=\"25\" class=\"normal\" />\n";
 	print "	<p>Klikk på kartet for å registrere lengde- og breddegrad på den innmeldte saken.</p><p>Du kan klikke flere ganger for å rette koordinatene.</p>\n";
@@ -87,8 +90,11 @@ $ip = getenv("REMOTE_ADDR") ;
 	print "<input size=\"6\" type=\"text\" id=\"lonbox\" name=\"lon\" />\n";
 	print "</div>\n";
 
+	
 	print "	<label for=\"problem\">Problem</label>\n";
 	print "	<textarea name=\"problem\" id=\"problem\" rows=\"5\" cols=\"30\"></textarea>\n";
+	print "</fieldset>";
+	print "<fieldset title=\"personalia\" id=\"personalia\"";
 	print "	<label for=\"navn\">Navn</label>\n";
 	print "	<input type=\"text\" name=\"navn\" id=\"navn\" size=\"25\" class=\"normal\" />\n";
 	print "	<label for=\"epost\">Epost</label> *\n";
@@ -96,9 +102,12 @@ $ip = getenv("REMOTE_ADDR") ;
 	print "	<label for=\"tlf\">Tlf</label> *\n";
 	print "	<input type=\"text\" name=\"tlf\" id=\"tlf\" size=\"25\" class=\"normal\" />\n";
 	print "	<p>Din ip-adresse: $ip</p>\n";
+	print "</fieldset>";
 
+	print "<fieldset title=\"bilde\" id=\"bilde\">";
 	print "	<label for=\"bilde\">Bilde:</label>\n";
 	print "	<input name=\"bilde\" id=\"bilde\" size=\"20\" type=\"file\" value=\"$bilde\" />\n";
+	print "</fieldset>";
 
 	//Submit knapp
 	print "	<input type=\"submit\" value=\"Registrer sak\" class=\"normalbold\" />\n";

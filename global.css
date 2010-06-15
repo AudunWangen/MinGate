@@ -152,11 +152,10 @@ li.green {
 /* Special */
 
 .registrationform label {
-	display:block;
+	font-weight: bold;
 }
 
 .registrationform input {
-	display:block;
 }
 
 .highlight {
