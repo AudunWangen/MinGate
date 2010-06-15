@@ -151,6 +151,14 @@ li.green {
 
 /* Special */
 
+.registrationform label {
+	display:block;
+}
+
+.registrationform input {
+	display:block;
+}
+
 .highlight {
 	background: #f0f3f9;
 	padding: 0.3em 0.3em;
