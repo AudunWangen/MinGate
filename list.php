@@ -22,7 +22,7 @@ $result2=mysql_query($query2);
 echo mysql_error();
 $nume=mysql_num_rows($result2);
 
-echo "<ol>";
+echo "<ol class=\"caselist\">";
 
 $query=" SELECT * FROM fiksgrafitti order by id desc limit $eu, $limit ";
 $result=mysql_query($query);

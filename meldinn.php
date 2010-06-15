@@ -5,6 +5,7 @@ include 'inc/header.php';
 <h2>Mitt n&aelig;romr&aring;de</h2>
 <p>Her kan du melde inn mangler eller feil som feks. hull i veg, søppel og tagging m.m.</p><p>Sakene behandles fortløpende av kommunen.</p>
 
+<div id="leftcontent">
 <h2>Registrer sak her</h2>
 
 <script type="text/javascript">
@@ -54,7 +55,7 @@ if ($ny != "ny")
 
 $ip = getenv("REMOTE_ADDR") ; 
 
-	print "<div class=\"registrationform\" id=\"leftcontent\">\n";
+	print "<div class=\"registrationform\">\n";
 
 	print "<form action=\"meldinn.php\" method=\"post\" name=\"fiksgrafitti\" enctype=\"multipart/form-data\"  onsubmit=\"return checkform(this);\">\n";
 	print "<fieldset title=\"feilmelding\" id=\"feilmelding\"";
@@ -134,6 +135,7 @@ $ip = getenv("REMOTE_ADDR") ;
 	print "	<input type=\"submit\" value=\"Registrer sak\" class=\"normalbold\" />\n";
 	print "	<span class=\"small\">* Vises ikke p&aring; websiden</span>\n";
 	print "</form>\n";
+	print "</div>";
 	print "</div>";
 }
 else
