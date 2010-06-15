@@ -54,14 +54,17 @@ if ($ny != "ny")
 
 $ip = getenv("REMOTE_ADDR") ; 
 
-	print "<div class=\"registrationform\">\n";
+	print "<div class=\"registrationform\" id=\"leftcontent\">\n";
 
 	print "<form action=\"meldinn.php\" method=\"post\" name=\"fiksgrafitti\" enctype=\"multipart/form-data\"  onsubmit=\"return checkform(this);\">\n";
 	print "<fieldset title=\"feilmelding\" id=\"feilmelding\"";
+	print "<legend>Feilmelding</legend>";
 	print "<input type=\"hidden\" name=\"ny\" value=\"ny\" />\n";
 	print "<input type=\"hidden\" name=\"status\" value=\"ubehandlet\" />\n";
 	print "<input type=\"hidden\" name=\"ip\" value=\"$ip\" />\n";
 
+	print "<ol>";
+	print "<li>";
 	print "	<label for=\"feil\">Feil</label>\n";
 	print " <select name=\"feil\" id=\"feil\" onchange=\"popup(this)\"> \n";
 	print " <option value=\"Ingen valgt\" selected=\"selected\">Velg</option>\n";
@@ -75,38 +78,56 @@ $ip = getenv("REMOTE_ADDR") ;
 	print " 	<option value=\"Friluft\">Friluft</option>\n";
 	print " 	<option value=\"Annet\">Annet</option>\n";
 	print " 	</select>\n";
-	print "</fieldset>";
+	print "</li>";
 
-	print "<fieldset title=\"feilsted\" id=\"feilsted\"";	
+	print "<li>";
 	print "	<label for=\"sted\">Adresse</label>\n";
 	print " <input type=\"text\" name=\"sted\" id=\"sted\" size=\"25\" class=\"normal\" />\n";
+	print "</li>";
 	print "	<p>Klikk på kartet for å registrere lengde- og breddegrad på den innmeldte saken.</p><p>Du kan klikke flere ganger for å rette koordinatene.</p>\n";
+	print "<li>";
 	print "	<label for=\"latbox\">Breddegrad</label>\n";
 	print "<div id=\"stylized\" class=\"myform\">\n";
 	print "<input size=\"6\" type=\"text\" id=\"latbox\" name=\"lat\" />\n";
 	print "</div>\n";
+	print "</li><li>";
 	print "	<label for=\"lonbox\">Lengdegrad</label>\n";
 	print "<div id=\"stylized\" class=\"myform\">\n";
 	print "<input size=\"6\" type=\"text\" id=\"lonbox\" name=\"lon\" />\n";
 	print "</div>\n";
+	print "</li>";
 
-	
-	print "	<label for=\"problem\">Problem</label>\n";
+	print "<li>";
+	print "	<label for=\"problem\" id=\"problem\">Problem</label>\n";
 	print "	<textarea name=\"problem\" id=\"problem\" rows=\"5\" cols=\"30\"></textarea>\n";
+	print "</li></ol>";
 	print "</fieldset>";
 	print "<fieldset title=\"personalia\" id=\"personalia\"";
+	print "<legend>Personalia</legend>";
+	print "<ol";
+	print "<li>";
 	print "	<label for=\"navn\">Navn</label>\n";
 	print "	<input type=\"text\" name=\"navn\" id=\"navn\" size=\"25\" class=\"normal\" />\n";
-	print "	<label for=\"epost\">Epost</label> *\n";
+	print "</li><li>";
+	print "	<label for=\"epost\">E-post<em>*</em></label>\n";
 	print "	<input type=\"text\" name=\"epost\" id=\"epost\" size=\"25\" class=\"normal\"/>\n";
-	print "	<label for=\"tlf\">Tlf</label> *\n";
+	print "</li><li>";
+	print "	<label for=\"tlf\">Tlf<em>*</em></label>\n";
 	print "	<input type=\"text\" name=\"tlf\" id=\"tlf\" size=\"25\" class=\"normal\" />\n";
+	print "</li><li>";
 	print "	<p>Din ip-adresse: $ip</p>\n";
 	print "</fieldset>";
+	print "</li>";
+	print "</ol>";
 
 	print "<fieldset title=\"bilde\" id=\"bilde\">";
+	print "<legend>Bilde</legend>";
+	print "<ol>";
+	print "<li>";
 	print "	<label for=\"bilde\">Bilde:</label>\n";
 	print "	<input name=\"bilde\" id=\"bilde\" size=\"20\" type=\"file\" value=\"$bilde\" />\n";
+	print "</li>";
+	print "</ol>";
 	print "</fieldset>";
 
 	//Submit knapp
@@ -156,7 +177,7 @@ echo "<br /><br />Takk for din registrering!<br /><br />Vi setter stor pris på 
 }
 ?>
 
-
+<div id="rightcontent">
 <h2>Usikker på adressen? Bruk kartet.</h2>
 
 <div id="map" style="width: 380px; height: 380px"></div>
@@ -180,7 +201,7 @@ GEvent.addListener(map, 'click', function(overlay, point) {
     //]]>
     </script>
 <p>Naviger i kartet ved å holde venstreknappen inne og bevege musen</p>
-
+</div>
 <?
 include 'inc/footer.php';
 ?>

@@ -78,12 +78,19 @@ a:active {
 	padding: 0em;
 	float: left;
 	clear: both;
+	width: 50%;
 }
 
 #rightmenu {
 	padding: 0em;
 	width: 40%;
 	float:right;
+}
+
+#rightcontent {
+	padding: 0em;
+	width: 40%;
+	float: right
 }
 
 /* Menu lists */
@@ -151,11 +158,40 @@ li.green {
 
 /* Special */
 
-.registrationform label {
-	font-weight: bold;
+.registrationform fieldset {
+	border: none;
 }
 
-.registrationform input {
+.registrationform fieldset legend {
+	display: none;
+}
+
+.registrationform ol {
+	list-style: none inside;
+	padding: 0em;
+}
+
+.registrationform label {
+	font-weight: bold;
+	width: 3em;
+	float:left;
+	margin-right: 2em;
+	display:block;
+}
+
+#stylized input {
+	float:left;
+	position:relative;
+	right: 4.5em;
+	top: 1.5em;
+	padding: 0em;
+	margin: 0em 0em 1.5em 0em;
+	border: none;
+	width: 11em;
+}
+
+.registrationform #problem {
+	float:none;
 }
 
 .highlight {
