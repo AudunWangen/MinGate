@@ -8,7 +8,8 @@
 
 	// Build and execute SQL query
 	$today = date("Ymd");
-    $query = "select * from fiksgrafitti where id LIKE '%$streng%' ORDER BY id  DESC LIMIT 0,5";
+  $esc_str = mysql_real_escape_string($_POST['streng']);
+  $query = "select * from fiksgrafitti where id LIKE '%$esc_str%' ORDER BY id  DESC LIMIT 0,5";
 	$result = MYSQL_QUERY($query);
     $number = MYSQL_NUMROWS($result);
 	MYSQL_CLOSE();
