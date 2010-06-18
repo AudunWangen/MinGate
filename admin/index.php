@@ -117,7 +117,7 @@ if (isset ($_GET['category'])) {
 				$SQL = mysql_query($SQL);
 				
 				while ($Data = mysql_fetch_assoc ($SQL)): ?>
-				<li class="<?=$Data['type']?><?php if(isset ($_GET['case_id']) AND $_GET['case_id'] == $Data['case_id']) echo ' highlight'?>" id="case_<?=$Data['case_id']?>"><span><?=date ('d.m.Y', $Data['timestamp']) ?> <a href="index.php?category=<?=urlencode ($Data['categoryName']) ?>"><?=escape_html ($Data['categoryName']) ?></a><br />Sted: <?=escape_html ($Data['address']) ?><br />Beskrivelse: <?= escape_html ($Data['description']) ?><br /><a href="submit.php?<?php echo $Data['case_id'] ?>">Endre</a></span></li>
+				<li class="<?=$Data['type']?><?php if(isset ($_GET['case_id']) AND $_GET['case_id'] == $Data['case_id']) echo ' highlight'?>" id="case_<?=$Data['case_id']?>"><span><?=date ('d.m.Y', $Data['timestamp']) ?> <a href="index.php?category=<?=urlencode ($Data['categoryName']) ?>"><?=escape_html ($Data['categoryName']) ?></a><br />Sted: <?=escape_html ($Data['address']) ?><br />Beskrivelse: <?= escape_html ($Data['description']) ?><br /><a href="submit.php?case_id=<?php echo $Data['case_id'] ?>">Endre</a></span></li>
 				<?php endwhile ?>
 			</ul>
 		</div>

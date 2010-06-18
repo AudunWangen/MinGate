@@ -32,6 +32,10 @@ if (isset ($_POST['submit'])) {
 	if (empty ($_POST['description'])) {
 		$Empty[] = 'description';
 	}
+
+	if (empty ($_POST['reply'])) {
+		$Empty[] = 'reply';
+	}
 	
 	if (long2ip (ip2long ($_SERVER['REMOTE_ADDR'])) != $_SERVER['REMOTE_ADDR']) {
 		echo 'Your IP address is not valid. ';
@@ -75,10 +79,9 @@ if (isset ($_POST['submit'])) {
 	$Errors = array_merge ($Empty, $Invalid);
 	
 	if (sizeof ($Errors) == 0) {
-		$SQL = 'INSERT INTO problems (category_id, lat, lon, `timestamp`, address, description, name, email, ip, picture) VALUES (%d, %f, %f, %d, %s, %s, %s, %s, %d, %s)';
+		$SQL = 'UPDATE problems set category_id=%d, lat=%f, lon=%f, `timestamp`=%d, address=%s, description=%s, reply=%s, name=%s, email=%s, ip=%d, picture=%s';
 		
-		$SQL = sprintf ($SQL, $_POST['categories'], $_POST['lat'], $_POST['lon'], time(), quote_smart ($_POST['address']), quote_smart ($_POST['description']), quote_smart ($_POST['name']), quote_smart ($_POST['email']), ip2long ($_SERVER['REMOTE_ADDR']), quote_smart ($picture_name));
-		
+		$SQL = sprintf ($SQL, $_POST['categories'], $_POST['lat'], $_POST['lon'], time(), quote_smart ($_POST['address']), quote_smart ($_POST['description']), quote_smart ($_POST['reply']), quote_smart ($_POST['name']), quote_smart ($_POST['email']), ip2long ($_SERVER['REMOTE_ADDR']), quote_smart ($picture_name));
 		mysql_query ($SQL);
 		
 		header ('Location: submit.php?ok');
@@ -122,11 +125,11 @@ function showError ($input)
 	return FALSE;
 }
 
-function value ($input) {
+function value ($full, $input) {
 	if (isset ($_POST[$input])) {
 		return htmlspecialchars (stripslashes ($_POST[$input]));
 	}
-	
+	printf ($full[$input]);
 	return FALSE;
 }
 
@@ -223,7 +226,14 @@ function value ($input) {
 		</p>
 		
 		<?php else: ?>
-		<!-- Her må det inn noe kode for å finne verdier til alle input-feltene. -->
+		<!-- Her må det inn noe kode for å fylle ut verdier til alle input-feltene. -->
+		<?php
+		$SQL = 'SELECT * FROM problems where case_id=%d';
+		$SQL = sprintf ($SQL, $_GET['case_id']);
+		$SQL = mysql_query ($SQL);
+		$Data = mysql_fetch_assoc ($SQL);
+		?>
+		<!-- Ferdig med stuff for å fylle ut verdier til input-feltene. -->
 		<h3>Endre saken</h3>
 		
 		<div class="left">
@@ -245,7 +255,7 @@ function value ($input) {
 					
 					<p>
 						<label for="address">Adresse:</label>
-						<input type="text" id="address" value="<?=value('address')?>" name="address" <?= addBorder ('address') ?> /> <?= showError ('address') ?>
+						<input type="text" id="address" value="<?=value($Data,'address')?>" name="address" <?= addBorder ('address') ?> /> <?= showError ('address') ?>
 					</p>
 					
 					<p>
@@ -257,8 +267,8 @@ function value ($input) {
 					</p>
 					
 					<p>
-						<label for="lat">Lengdegrad: </label><input type="text" value="<?=value('lat')?>" name="lat" <?= addBorder ('lat') ?> id="lat" /> <?= showError ('lat') ?><br />
-						<label for="lon">Breddegrad:</label><input type="text" value="<?=value('lon')?>" name="lon" <?= addBorder ('lon') ?> id="lon" /> <?= showError ('lon') ?>
+						<label for="lat">Lengdegrad: </label><input type="text" value="<?=value($Data,'lat')?>" name="lat" <?= addBorder ('lat') ?> id="lat" /> <?= showError ('lat') ?><br />
+						<label for="lon">Breddegrad:</label><input type="text" value="<?=value($Data,'lon')?>" name="lon" <?= addBorder ('lon') ?> id="lon" /> <?= showError ('lon') ?>
 					</p>
 					
 					<p class="informative" id="closest_address">
@@ -272,12 +282,12 @@ function value ($input) {
 					<p>
 						<label for="type">Type:</label>
 						<select name="categories" id="categories" <?=addBorder('categories')?>>
-							<option value="0">Velg</option>
+							<option value="<?=value($Data,'category_id')?>">Velg</option>
 							<?php
 							$SQL = mysql_query ('SELECT * FROM categories ORDER BY name ASC');
 							
-							while ($Data = mysql_fetch_assoc ($SQL)): ?>
-							<option value="<?=$Data['category_id']?>"<?php if(value ('categories') == $Data['category_id']) echo ' selected="selected"'; ?>><?=$Data['name']?></option>
+							while ($Data_cat = mysql_fetch_assoc ($SQL)): ?>
+							<option value="<?=$Data_cat['category_id']?>"<?php if($Data_cat['category_id'] == $Data['category_id']) echo ' selected="selected"'; ?>><?=$Data_cat['name']?></option>
 							<?php endwhile ?>
 						</select>
 					</p>
@@ -287,7 +297,7 @@ function value ($input) {
 					</p>
 					
 					<p>
-						<textarea id="description" name="description" rows="7" <?=addBorder('description')?> cols="50"><?=value('description')?></textarea> <?= showError ('description') ?>
+						<textarea id="description" name="description" rows="7" <?=addBorder('description')?> cols="50"><?=value($Data,'description')?></textarea> <?= showError ('description') ?>
 					</p>
 					
 					<p>
@@ -301,7 +311,13 @@ function value ($input) {
 					<p>
 						<label for="status">Status</label>
 						<select name="status" id="status" <?=addBorder('status')?>>
-							<option value="0">Velg</option>
+							<option value="<?=value($Data,'status_id')?>">Velg</option>
+							<?php
+							$SQL= mysql_query ('SELECT * FROM statuses ORDER BY name ASC');
+
+							while ($Data_status = mysql_fetch_assoc ($SQL)): ?>
+							<option value="<?=$Data_status['status_id']?>"<?php if($Data_status['status_id'] == $Data['status_id']) echo ' selected="selected"'; ?>><?=$Data_status['name']?></option>
+							<?php endwhile ?>
 						</select>
 					</p>
 
@@ -310,7 +326,7 @@ function value ($input) {
 					</p>
 
 					<p>
-						<textarea id="reply" name="reply" rows="7" <?=addBorder('reply')?> cols="50"><?=value('reply')?></textarea>
+						<textarea id="reply" name="reply" rows="7" <?=addBorder('reply')?> cols="50"><?=value($Data,'reply')?></textarea>
 					</p>
 				</fieldset>	
 				<fieldset>
@@ -318,12 +334,12 @@ function value ($input) {
 				
 					<p>
 						<label for="name">Navn:</label>
-						<input type="text" name="name" value="<?=value('name')?>" id="name" <?=addBorder('name')?> /> <?= showError ('name') ?>
+						<input type="text" name="name" value="<?=value($Data,'name')?>" id="name" <?=addBorder('name')?> /> <?= showError ('name') ?>
 					</p>
 					
 					<p>
 						<label for="email">E-post:</label>
-						<input type="text" name="email" id="email" value="<?=value('email')?>" <?=addBorder('email')?> /> <?= showError ('email') ?>
+						<input type="text" name="email" id="email" value="<?=value($Data,'email')?>" <?=addBorder('email')?> /> <?= showError ('email') ?>
 					</p>
 				</fieldset>
 				
