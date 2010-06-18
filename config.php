@@ -1,43 +1,50 @@
 <?php
+header ('Content-type:text/html;charset=utf-8');
 
-$servername = "localhost";
-$dbusername = "fiksgate";
-$dbpassword = "fiksgate";
-$dbname = "fiksgate";
-$tbname = "fiksgrafitti";
-$googleapikey = "ABQIAAAAziwQ4P9Qto7VoNQ5zMyz9xS1NvSkQuZCcMfLok91DzR4dG0fUxT-liTrUWv3nUJJ4ZSasDiikRW3Gw";
+// Database
+define ('DB_HOST', 'localhost');
+define ('DB_USER', 'fiksgate');
+define ('DB_PW', 'fiksgate');
+define ('DB_NAME', 'fiksgate');
 
-define("DB_HOST","localhost");
-define("DB_USER","fiksgate");
-define("DB_PASS","fiksgate");
-define("DB_NAME","fiksgate");
-define("DB_TABLE","fiksgrafitti");
-define("GOOGLEAPIKEY","ABQIAAAAziwQ4P9Qto7VoNQ5zMyz9xS1NvSkQuZCcMfLok91DzR4dG0fUxT-liTrUWv3nUJJ4ZSasDiikRW3Gw");
-define("GOOGLE_CENTERPOINT_LON","11.995869");
-define("GOOGLE_CENTERPOINT_LAT","60.192583");
-define("GOOGLE_ZOOM_LEVEL","11");
+// Application
+define ('MUNICIPAL_ID', 0402); // See database table postal_municipal
+define ('GOOGLE_API_KEY', 'ABQIAAAAziwQ4P9Qto7VoNQ5zMyz9xS1NvSkQuZCcMfLok91DzR4dG0fUxT-liTrUWv3nUJJ4ZSasDiikRW3Gw');
 
-define("COMPANY_NAME","Kommunens navn");
-define("COMPANY_URI","http://www.min.kommune.no/");
-define("COMPANY_SLA_URI","http://www.min.kommune.no/tjenestenivaa/");
-define("COMPANY_PHONE","55555555");
-define("COMPANY_SMS_CODE","kommune");
-define("COMPANY_SMS_PHONE","1804");
-define("COMPANY_CHAT_URI","http://www.min.kommune.no/chat");
-define("COMPANY_EMAIL","postmottak@min.kommune.no");
-define("COMPANY_PROBLEM_EMAIL","drift@min.kommune.no");
-define("COMPANY_MAIL_ADDRESS","Postmottak, 1234 Minkommune");
-define("COMPANY_VISIT_ADDRESS","Mingate 1, 1234 Minkommune");
-define("COMPANY_RESPONSIBLE_PERSON","Ola Nordmann");
 
-connecttodb($servername,$dbname,$dbusername,$dbpassword);
-function connecttodb($servername,$dbname,$dbuser,$dbpassword)
-{
-global $link;
-$link=mysql_connect ("$servername","$dbuser","$dbpassword");
-if(!$link){die("Could not connect to MySQL");}
-mysql_select_db("$dbname",$link) or die ("could not open db".mysql_error());
+mysql_connect (DB_HOST, DB_USER, DB_PW);
+mysql_select_db (DB_NAME);
+
+mysql_query ('SET NAMES `utf8`');
+
+
+if (!function_exists ('quote_smart')) {
+	function quote_smart($value){
+		// Stripslashes
+		if (get_magic_quotes_gpc() && !is_null($value) ) {
+				$value = stripslashes($value);
+		}
+
+		//Change decimal values from , to . if applicable
+		if( is_numeric($value) && strpos($value,',') !== false ){
+				$value = str_replace(',','.',$value);
+		}
+		if( is_null($value) ){
+				$value = 'NULL';
+		}
+		// Quote if not integer or null
+		elseif (!is_numeric($value)) {
+				$value = "'" . mysql_real_escape_string($value) . "'";
+		}
+
+		return $value;
+	}
 }
 
-
+if (!function_exists ('escape_html')) {
+	function escape_html ($string)
+	{
+		return htmlspecialchars (stripslashes ($string));
+	}
+}
 ?>
