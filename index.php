@@ -4,8 +4,8 @@ require 'config.php';
 
 if (isset ($_GET['lat']) AND isset ($_GET['lon'])) {
 	
-	$lat = $_GET['lat'];
-	$lon = $_GET['lon'];
+	$lat = mysql_real_escape_string($_GET['lat']);
+	$lon = mysql_real_escape_string($_GET['lon']);
 	
 	$SQL = 'SELECT m.id as kommune_id, z.zip, p.name, z.lat, z.lon, acos(SIN( RADIANS(' . $lat . ')) * SIN( RADIANS(z.lat))
 +(cos(RADIANS(' . $lat . ')) * COS( RADIANS(z.lat)) * COS(RADIANS(z.lon) - RADIANS(' . $lon . '))
