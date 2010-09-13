@@ -18,7 +18,8 @@ include 'kart_sok.php';
 include 'config.php';
 	
 	$today = date("Ymd");
-    $query = "select * from $tbname where dato LIKE '%$streng%' or sted LIKE '%$streng%' or feil LIKE '%$streng%' or problem LIKE '%$streng%' or navn LIKE '%$streng%'";
+  $esc_str = mysql_real_escape_string($_GET['streng']);
+  $query = "select * from $tbname where dato LIKE '%$esc_str%' or sted LIKE '%$esc_str%' or feil LIKE '%$esc_str%' or problem LIKE '%$esc_str%' or navn LIKE '%$esc_str%'";
 	$result = MYSQL_QUERY($query);
 	$number = MYSQL_NUMROWS($result);
 	MYSQL_CLOSE();
