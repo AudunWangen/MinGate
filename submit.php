@@ -1,5 +1,4 @@
 <?php
-
 require 'config.php';
 
 if (isset ($_POST['submit'])) {
@@ -80,7 +79,23 @@ if (isset ($_POST['submit'])) {
 		$SQL = sprintf ($SQL, $_POST['categories'], $_POST['lat'], $_POST['lon'], time(), quote_smart ($_POST['address']), quote_smart ($_POST['description']), quote_smart ($_POST['name']), quote_smart ($_POST['email']), ip2long ($_SERVER['REMOTE_ADDR']), quote_smart ($picture_name));
 		
 		mysql_query ($SQL);
-		
+		$case_id = mysql_insert_id();
+
+		$SQL = mysql_query ('SELECT categories.name FROM categories, problems WHERE categories.category_id=problems.category_id AND case_id=' . $case_id);
+		$category = mysql_fetch_assoc ($SQL);
+
+                $to = $_POST['email'];
+                $subject = 'Ny sak registrert i Min Gate';
+                $body = '<h1>' . $_POST['address'] . '</h1>' .
+                        '<p>Takk for din registrering.</p>' .
+                        '<ul><li>Kategori: ' . $category['name'] . '</li>' .
+                        '<li>Skildring: ' . $_POST['description'] . '</li></ul>' .
+                        '<p>Mvh.<br />Kommunen</p>';
+                $headers = "MIME-Version: 1.0\r\n" .
+                        "Content-type:text/html;charset=UTF-8\r\n" .
+                        "From: Min Gate <mingate@example.com>\r\n" .
+                        "Bcc: mingate@example2.com\r\n";
+                mail($to, $subject, $body, $headers);		
 		header ('Location: submit.php?ok');
 		die;
 	}
@@ -141,7 +156,7 @@ function value ($input) {
 	<script src="http://maps.google.com/maps?file=api&v=2&key=<?=GOOGLE_API_KEY?>" type="text/javascript"></script>
 	
 	<script type="text/javascript" charset="utf-8" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
-	<script type="text/javascript" charset="utf-8" src="http://davidsteinsland.net/assets/js/jquery.tipTip.min.js"></script>
+	<script type="text/javascript" charset="utf-8" src="js/jquery.tipTip.min.js"></script>
 
 	<script type="text/javascript">
 	$(function() {
@@ -160,7 +175,7 @@ function value ($input) {
 		map.addControl(new GLargeMapControl());
 		map.addControl(new GMapTypeControl());
 		map.addControl(new GScaleControl());
-		map.setCenter(new GLatLng(59.747517, 5.261328), 11, G_NORMAL_MAP);
+		map.setCenter(new GLatLng(60.191335, 12.009258), 11, G_NORMAL_MAP);
 
 		//map.centerAndZoom(new GPoint(9.67002, 59.10055), 6);
 		 
@@ -173,7 +188,7 @@ function value ($input) {
 			
 			$.getJSON (url, function (data) {
 				if (data.kommune_id != <?= MUNICIPAL_ID ?>) {
-					alert ('Du kan bare legge til områder innen Bømlo');
+					alert ('Du kan bare legge til områder innen Kongsvinger');
 				} else {
 					$('#closest_address').show();
 					$('#closest_address span').html (data.zip + ', ' + data.name);
@@ -222,7 +237,7 @@ function value ($input) {
 		<h3>Saken er sendt!</h3>
 		
 		<p>
-			Takk skal du ha for at du tok deg tiden til å gjøre dette.
+			Takk skal du ha for at du tok deg tiden til å registrere saken.
 		</p>
 		
 		<?php else: ?>

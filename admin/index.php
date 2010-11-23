@@ -1,5 +1,4 @@
 <?php
-ini_set('display_errors',1);
 session_start();
 if(!session_is_registered('myusername')){
 header("location:main_login.php");
@@ -27,7 +26,7 @@ if (isset ($_GET['category'])) {
 	<script src="http://maps.google.com/maps?file=api&v=2&key=<?=GOOGLE_API_KEY?>" type="text/javascript"></script>
 	
 	<script type="text/javascript" charset="utf-8" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
-	<script type="text/javascript" charset="utf-8" src="http://davidsteinsland.net/assets/js/jquery.tipTip.min.js"></script>
+	<script type="text/javascript" charset="utf-8" src="../js/jquery.tipTip.min.js"></script>
 
 	<script type="text/javascript">
 	$(function() {
@@ -46,7 +45,7 @@ if (isset ($_GET['category'])) {
 		map.addControl(new GLargeMapControl());
 		map.addControl(new GMapTypeControl());
 		map.addControl(new GScaleControl());
-		map.setCenter(new GLatLng(59.747517, 5.261328), 11, G_NORMAL_MAP);
+		map.setCenter(new GLatLng(60.191335, 12.009258), 11, G_NORMAL_MAP);
 
 		function createMarker(point, number) {
 			var marker = new GMarker(point);
@@ -112,7 +111,7 @@ if (isset ($_GET['category'])) {
 		
 		<div class="right">
 			<ul class="latest">
-				<?php $SQL = 'SELECT p.timestamp, p.description, p.case_id, p.address, c.name as categoryName, s.type FROM problems p INNER JOIN categories c ON p.category_id = c.category_id INNER JOIN statuses s ON p.status_id = s.status_id';
+				<?php $SQL = 'SELECT p.timestamp, p.description, p.case_id, p.address, c.name as categoryName, p.picture, s.type FROM problems p INNER JOIN categories c ON p.category_id = c.category_id INNER JOIN statuses s ON p.status_id = s.status_id';
 				
 				if ($category) {
 					$SQL .= ' WHERE c.name = ' . quote_smart ($category);
@@ -122,7 +121,7 @@ if (isset ($_GET['category'])) {
 				$SQL = mysql_query($SQL);
 				
 				while ($Data = mysql_fetch_assoc ($SQL)): ?>
-				<li class="<?=$Data['type']?><?php if(isset ($_GET['case_id']) AND $_GET['case_id'] == $Data['case_id']) echo ' highlight'?>" id="case_<?=$Data['case_id']?>"><span><?=date ('d.m.Y', $Data['timestamp']) ?> <a href="index.php?category=<?=urlencode ($Data['categoryName']) ?>"><?=escape_html ($Data['categoryName']) ?></a><br />Sted: <?=escape_html ($Data['address']) ?><br />Beskrivelse: <?= escape_html ($Data['description']) ?><br /><a href="submit.php?case_id=<?php echo $Data['case_id'] ?>">Endre</a></span></li>
+				<li class="<?=$Data['type']?><?php if(isset ($_GET['case_id']) AND $_GET['case_id'] == $Data['case_id']) echo ' highlight'?>" id="case_<?=$Data['case_id']?>"><span><?=date ('d.m.Y', $Data['timestamp']) ?> <a href="index.php?category=<?=urlencode ($Data['categoryName']) ?>"><?=escape_html ($Data['categoryName']) ?></a><br />Sted: <?=escape_html ($Data['address']) ?><br />Beskrivelse: <?= escape_html ($Data['description']) ?><?php if(isset ($Data['picture'])) echo '<img class="avatar" alt="Bilde av problemet" src="../uploads/thumbs/' . urlencode ($Data['picture']) . '.jpg"' ?><br /><a href="submit.php?case_id=<?php echo $Data['case_id'] ?>">Endre</a></span></li>
 				<?php endwhile ?>
 			</ul>
 		</div>

@@ -8,7 +8,7 @@ define ('DB_PW', 'fiksgate');
 define ('DB_NAME', 'fiksgate');
 
 // Application
-define ('MUNICIPAL_ID', 0402); // See database table postal_municipal
+define ('MUNICIPAL_ID', 402); // See database table postal_municipal (PS! No leading 0)
 define ('GOOGLE_API_KEY', 'ABQIAAAAziwQ4P9Qto7VoNQ5zMyz9xS1NvSkQuZCcMfLok91DzR4dG0fUxT-liTrUWv3nUJJ4ZSasDiikRW3Gw');
 
 

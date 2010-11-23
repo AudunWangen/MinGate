@@ -1,5 +1,4 @@
 <?php
-
 require '../config.php';
 
 if (isset ($_POST['submit'])) {
@@ -79,11 +78,31 @@ if (isset ($_POST['submit'])) {
 	$Errors = array_merge ($Empty, $Invalid);
 	
 	if (sizeof ($Errors) == 0) {
-		$SQL = 'UPDATE problems set category_id=%d, lat=%f, lon=%f, `timestamp`=%d, address=%s, description=%s, reply=%s, name=%s, email=%s, ip=%d, picture=%s';
+		$SQL = 'UPDATE problems set category_id=%d, status_id=%d, lat=%f, lon=%f, `timestamp`=%d, address=%s, description=%s, reply=%s, name=%s, email=%s, ip=%d, picture=%s where case_id=%d';
 		
-		$SQL = sprintf ($SQL, $_POST['categories'], $_POST['lat'], $_POST['lon'], time(), quote_smart ($_POST['address']), quote_smart ($_POST['description']), quote_smart ($_POST['reply']), quote_smart ($_POST['name']), quote_smart ($_POST['email']), ip2long ($_SERVER['REMOTE_ADDR']), quote_smart ($picture_name));
+		$SQL = sprintf ($SQL, $_POST['categories'], $_POST['status'], $_POST['lat'], $_POST['lon'], time(), quote_smart ($_POST['address']), quote_smart ($_POST['description']), quote_smart ($_POST['reply']), quote_smart ($_POST['name']), quote_smart ($_POST['email']), ip2long ($_SERVER['REMOTE_ADDR']), quote_smart ($picture_name), quote_smart ($_GET['case_id']));
 		mysql_query ($SQL);
-		
+
+                $SQL = mysql_query ('SELECT * FROM categories WHERE category_id=' . $_POST['categories']);
+                $category = mysql_fetch_assoc ($SQL);
+
+		$SQL = mysql_query ('SELECT * FROM statuses WHERE status_id=' . $_POST['status']);
+		$status = mysql_fetch_assoc ($SQL);
+
+                $to = $_POST['email'];
+                $subject = 'Saken din i Fiks nabolaget mitt har blitt endret';
+                $body = '<h1>' . $_POST['address'] . '</h1>' .
+                        '<p>Saken din har blitt besvart. Du kan svare p&aring; denne e-posten dersom du har kommentarer.</p>' .
+                        '<ul><li>Kategori: ' . $category['name'] . '</li>' .
+                        '<li>Skildring: ' . $_POST['description'] . '</li>' .
+			'<li>Status: ' . $status['name'] . '</li>' .
+			'<li>Svar: ' . $_POST['reply'] . '</li></ul>' .
+			'<p>Mvh.<br />Kommunen</p>';
+                $headers = "MIME-Version: 1.0\r\n" .
+                        "Content-type:text/html;charset=UTF-8\r\n" .
+                        "From: Min Gate <mingate@example.com>\r\n";
+                mail($to, $subject, $body, $headers);
+
 		header ('Location: submit.php?ok');
 		die;
 	}
@@ -144,7 +163,7 @@ function value ($full, $input) {
 	<script src="http://maps.google.com/maps?file=api&v=2&key=<?=GOOGLE_API_KEY?>" type="text/javascript"></script>
 	
 	<script type="text/javascript" charset="utf-8" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
-	<script type="text/javascript" charset="utf-8" src="http://davidsteinsland.net/assets/js/jquery.tipTip.min.js"></script>
+	<script type="text/javascript" charset="utf-8" src="../js/jquery.tipTip.min.js"></script>
 
 	<script type="text/javascript">
 	$(function() {
@@ -163,20 +182,20 @@ function value ($full, $input) {
 		map.addControl(new GLargeMapControl());
 		map.addControl(new GMapTypeControl());
 		map.addControl(new GScaleControl());
-		map.setCenter(new GLatLng(59.747517, 5.261328), 11, G_NORMAL_MAP);
+		map.setCenter(new GLatLng(60.191335, 12.009258), 11, G_NORMAL_MAP);
 
 		//map.centerAndZoom(new GPoint(9.67002, 59.10055), 6);
 		 
 		// Recenter Map and add Coords by clicking the map
 		GEvent.addListener(map, 'click', function(overlay, point) {
-			var url = 'index.php?lat=' + point.y + '&lon=' + point.x;
+			var url = '../index.php?lat=' + point.y + '&lon=' + point.x;
 			//alert (url);
 			
 			map.clearOverlays();
 			
 			$.getJSON (url, function (data) {
 				if (data.kommune_id != <?= MUNICIPAL_ID ?>) {
-					alert ('Du kan bare legge til områder innen Bømlo');
+					alert ('Du kan bare legge til områder innen Kongsvinger');
 				} else {
 					$('#closest_address').show();
 					$('#closest_address span').html (data.zip + ', ' + data.name);

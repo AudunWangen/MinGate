@@ -299,7 +299,7 @@ class Avatar {
 				imagejpeg ($new_img, $savepos, $this->_JPGQuality);
 			break;	
 			case 3:
-				imageantialias ($new_img, true);
+				#imageantialias ($new_img, true);
 				imagepng ($new_img, $savepos);
 			break;
 			case 1:

@@ -35,7 +35,7 @@ LIMIT 1';
 	<script src="http://maps.google.com/maps?file=api&v=2&key=<?=GOOGLE_API_KEY?>" type="text/javascript"></script>
 	
 	<script type="text/javascript" charset="utf-8" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
-	<script type="text/javascript" charset="utf-8" src="http://davidsteinsland.net/assets/js/jquery.tipTip.min.js"></script>
+	<script type="text/javascript" charset="utf-8" src="js/jquery.tipTip.min.js"></script>
 
 	<script type="text/javascript">
 	$(function() {
@@ -55,7 +55,7 @@ LIMIT 1';
 		map.addControl(new GLargeMapControl());
 		map.addControl(new GMapTypeControl());
 		map.addControl(new GScaleControl());
-		map.setCenter(new GLatLng(59.747517, 5.261328), 11, G_NORMAL_MAP);
+		map.setCenter(new GLatLng(60.191335, 12.009258), 11, G_NORMAL_MAP);
 
 		function createMarker(point, number) {
 			var marker = new GMarker(point);
@@ -123,6 +123,14 @@ LIMIT 1';
 		</div>
 		
 		<div class="right latest small">
+			<h3>Forklaring</h3>
+			
+			<ul>
+				<li class="pending"><span>Venter på behandling</span></li>
+				<li class="open"><span>Under behandling</span></li>
+				<li class="close"><span>Saken er løst/avsluttet</span></li>
+			</ul>
+
 			<h3>Siste 10 registrerte saker</h3>
 				
 			<ul>
@@ -133,14 +141,6 @@ LIMIT 1';
 			</ul>
 			
 			<h4><a href="view.php">Se alle</a></h4>
-			
-			<h4>Forklaring</h4>
-			
-			<ul>
-				<li class="pending"><span>Venter på behandling</span></li>
-				<li class="open"><span>Under behandling</span></li>
-				<li class="closed"><span>Saken er løst/avsluttet</span></li>
-			</ul>
 		</div>
 	</div>
 </div>

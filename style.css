@@ -12,6 +12,10 @@ body {
 	line-height:22px
 }
 
+img.avatar {
+	float:right;
+}
+
 div.wrapper {
 	width:960px;
 	margin:0 auto;
@@ -81,7 +85,7 @@ div.latest ul li.open, ul.latest li.open {
 	color:orange
 }
 
-div.latest ul li.closed, ul.latest li.closed {
+div.latest ul li.close, ul.latest li.close {
 	color:green
 }
 
