@@ -72,7 +72,7 @@ Endre rettighetene på filene til brukeren som Apache kjører under:
 $ chown -R www-data:www-data /var/www
 $ chmod -R 777 /var/www/upload
 
-For å logge inn i admin-grensesnittet går du til http://localhost/admin. Brukernavn og passord er admin, og bør endres. Dette kan gjøres i /admin/login.php.
+For å logge inn i admin-grensesnittet går du til http://localhost/admin. Brukernavn og passord er admin, og bør endres. Brukerne ligger i tabellen members.
 
 1.4 GOOGLE MAPS
 
@@ -84,15 +84,3 @@ API-nøkkelen legger du inn i config.php
 2. PLANLAGTE ENDRINGER
 
 Se https://github.com/AudunWangen/MinGate/issues
-
-- Centralize configuration and make it more flexible. The administration-part of the page can reuse many of the parts used for regular users.
-- Rewrite the whole page without use of tables.
-- Fix Google Maps HTML validation errors.
-- Support for other map services.
-- External CSS for all pages.
-- Make parts more embed-friendly, e.g. the map and list of registered problems.
-- Localization by removing all hardcoded strings and using a translation file (Wordpress-style).
-- Do not rely on registerglobals to be set (ref: http://www.odi.ch/prog/design/php/guide.php).
-- Installscript for easy setup of database, configuration options and settings.
-- Consistent error handling.
-- Handle paths in a better way (ABSPATH).
