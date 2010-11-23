@@ -58,7 +58,7 @@ $ cp -r /sti-til-filene/* /var/www/
 Endre instillinger for database, kommune, kontaktperson etc i config.php med en teksteditor:
 $ nano /var/www/config.php
 
-PS! Noe konfigurasjon kan ligge igjen i andre filer også. Dette blir rettet fortløpende.
+PS! Noe konfigurasjon kan ligge igjen i andre filer også, blant annet koordinater for senterpunkt for kartet (e.g. map.setCenter(new GLatLng(60.191335, 12.009258), 11, G_NORMAL_MAP);).
 
 I Apache-konfigurasjonen må du slå på register globals, for eksempel slik:
         DocumentRoot /var/www
@@ -82,6 +82,8 @@ http://code.google.com/intl/no/apis/maps/signup.html
 API-nøkkelen legger du inn i config.php
 
 2. PLANLAGTE ENDRINGER
+
+Se https://github.com/AudunWangen/MinGate/issues
 
 - Centralize configuration and make it more flexible. The administration-part of the page can reuse many of the parts used for regular users.
 - Rewrite the whole page without use of tables.
