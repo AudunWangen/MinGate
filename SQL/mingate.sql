@@ -23,7 +23,7 @@ SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
 CREATE TABLE `categories` (
   `category_id` int(2) unsigned NOT NULL auto_increment,
-  `name` varchar(20) NOT NULL,
+  `name` varchar(50) NOT NULL,
   PRIMARY KEY  (`category_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;
