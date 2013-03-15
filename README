@@ -55,10 +55,8 @@ Alle kommandoer kjøres som root dersom ikke annet er oppgitt og gjelder for Apa
 Kopier inn filene for MinGate under /var/www/:
 $ cp -r /sti-til-filene/* /var/www/
 
-Endre instillinger for database, kommune, kontaktperson etc i config.php med en teksteditor:
+Kopier eller flytt config.sample.php til config.php, og endre instillinger for database, kommune, kontaktperson etc i config.php med en teksteditor:
 $ nano /var/www/config.php
-
-PS! Noe konfigurasjon kan ligge igjen i andre filer også, blant annet koordinater for senterpunkt for kartet (e.g. map.setCenter(new GLatLng(60.191335, 12.009258), 11, G_NORMAL_MAP);).
 
 I Apache-konfigurasjonen må du slå på register globals, for eksempel slik:
         DocumentRoot /var/www
