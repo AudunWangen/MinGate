@@ -1,4 +1,9 @@
 <?php
+session_start();
+if(!session_is_registered('myusername')){
+header("location:main_login.php");
+}
+
 require '../config.php';
 
 if (isset ($_POST['submit'])) {
@@ -42,7 +47,7 @@ if (isset ($_POST['submit'])) {
 	}
 	
 	if (!empty ($_FILES['picture']['tmp_name'])) {
-		require 'inc/Avatar.php';
+		require '../inc/Avatar.php';
 		
 		$Picture = new Avatar  ();
 		
@@ -152,70 +157,98 @@ function value ($full, $input) {
 	return FALSE;
 }
 
-?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+?><!DOCTYPE html>
+<html>
 <head>
 	<title>MinGate - Endre en sak</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	
-	<link rel="stylesheet" type="text/css" media="print, projection, screen" href="../style.css" />
-	
-	<script src="http://maps.google.com/maps?file=api&v=2&key=<?=GOOGLE_API_KEY?>" type="text/javascript"></script>
-	
-	<script type="text/javascript" charset="utf-8" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
-	<script type="text/javascript" charset="utf-8" src="../js/jquery.tipTip.min.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" media="print, projection, screen" href="../style.css" />
+		<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=<?=GOOGLE_API_KEY?>&amp;sensor=false"></script>
+    <script type="text/javascript" charset="utf-8" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+		<script type="text/javascript" charset="utf-8" src="../js/jquery.tipTip.min.js"></script>
 
-	<script type="text/javascript">
-	$(function() {
-	
-		$('#switchCategory').click (function () {
-			var category = $('#type :selected').val();
-			
-			if (category != 0) {
-				location.href = 'index.php?category=' + category;
-			} else {
-				location.href = 'index.php';
+		<script type="text/javascript">
+			var center = new google.maps.LatLng(<?=CENTER_LON?>, <?=CENTER_LAT?>);
+      var location;
+      var map;
+      var marker;
+      var i;
+
+			<?php
+				if (isset ($_GET['case_id'])) {
+					$SQL = 'SELECT c.name as categoryName, p.lat, p.lon, p.case_id, p.address, p.description, p.reply, s.type FROM problems p INNER JOIN categories c INNER JOIN statuses s WHERE p.category_id = c.category_id AND p.status_id = s.status_id AND p.case_id = ' . $_GET['case_id'];
+          $SQL = mysql_query ($SQL);
+      ?>
+			    var problems = [
+							<?php while ($Data = mysql_fetch_assoc ($SQL)): ?>
+								[ <?=$Data['lat'] ?>,<?=$Data['lon']?>,'<?=$Data['case_id'] ?>','../img/<?=$Data['type'] ?>.png','<?=$Data['address'] ?>' ],
+							<?php endwhile ?>
+						];
+      <?php
+        }
+      ?>
+
+			function initialize() {
+				var mapOptions = {
+						zoom: <?=MAP_ZOOM?>,
+						center: center,
+						mapTypeId: google.maps.MapTypeId.ROADMAP
+				};
+				
+				map = new google.maps.Map(document.getElementById('map'),
+						mapOptions);
+
+					marker = new google.maps.Marker({
+						position: new google.maps.LatLng(problems[0][0], problems[0][1]),
+						map: map, 
+						draggable: true,
+						icon: problems[0][3]
+					});
+
+        google.maps.event.addListener(marker, 'dragend', function(event){
+          placeMarker(event.latLng);
+        });
+
+				google.maps.event.addListener(map, 'click', function(event){
+          placeMarker(event.latLng);
+        });
 			}
-		});
-	
-		var map = new GMap2(document.getElementById("map"));
-		map.addControl(new GLargeMapControl());
-		map.addControl(new GMapTypeControl());
-		map.addControl(new GScaleControl());
-		map.setCenter(new GLatLng(60.191335, 12.009258), 11, G_NORMAL_MAP);
 
-		//map.centerAndZoom(new GPoint(9.67002, 59.10055), 6);
-		 
-		// Recenter Map and add Coords by clicking the map
-		GEvent.addListener(map, 'click', function(overlay, point) {
-			var url = '../index.php?lat=' + point.y + '&lon=' + point.x;
-			//alert (url);
-			
-			map.clearOverlays();
-			
-			$.getJSON (url, function (data) {
-				if (data.kommune_id != <?= MUNICIPAL_ID ?>) {
-					alert ('Du kan bare legge til områder innen Kongsvinger');
-				} else {
-					$('#closest_address').show();
-					$('#closest_address span').html (data.zip + ', ' + data.name);
-					$('#lat').val (point.y);
-					$('#lon').val (point.x);
-					
-					var marker = new GMarker(new GLatLng(point.y, point.x));
-					map.addOverlay(marker);
-				}
-			});
-			
-		});
-		
-		
-	});
+      function placeMarker(position){
+        // Create or move marker
+        if (marker == undefined){
+          marker = new google.maps.Marker({
+            position: position,
+            map: map,
+            draggable: true,
+            icon: "../img/pending.png"
+          });
+        }
+        else {
+          marker.setPosition(position);
+        }
+        map.panTo(position);
+        
+        // Get municipality through JSON
+        var url = '../index.php?lat=' + position.lat() + '&lon=' + position.lng();
+        $.getJSON(url, function (data) {
+          // Is this the right municipality?
+          if (data.kommune_id != <?= MUNICIPAL_ID ?>) {
+            alert ("Du kan ikke legge til saker i " + data.name);
+          } else {
+            $('#lat').val (position.lat());
+            $('#lon').val (position.lng());
+          }
+        });
+
+      }
+
+			google.maps.event.addDomListener(window, 'load', initialize);
 	</script>
 </head>
 <body>
-
-<div class="wrapper">
+  <div class="wrapper">
 
 	<h1><a href="../">MinGate</a></h1>
 	<h2>Endre en sak</h2>
@@ -224,16 +257,18 @@ function value ($full, $input) {
 		<ul class="menu">
 			<li><a href="index.php">Administrasjon</a></li>
 			<li class="search">
-				<select name="categories" id="type">
-					<option value="0">Velg</option>
-					<?php
-					$SQL = mysql_query ('SELECT * FROM categories ORDER BY name ASC');
-					
-					while ($Data = mysql_fetch_assoc ($SQL)): ?>
-					<option value="<?=urlencode ($Data['name'])?>"><?=$Data['name']?></option>
-					<?php endwhile ?>
-				</select>
-				<button type="submit" id="switchCategory">Vis fra kategori</button>
+			  <form>
+			  	<select name="categories" id="type">
+	  				<option value="0">Velg</option>
+	  				<?php
+	  				$SQL = mysql_query ('SELECT * FROM categories ORDER BY name ASC');
+	  				
+		  			while ($Data = mysql_fetch_assoc ($SQL)): ?>
+  					<option value="index.php?category=<?=$Data['category_id']?>"><?=$Data['name']?></option>
+	  				<?php endwhile ?>
+	  			</select>
+	  			<button type="submit" id="switchCategory" onClick="top.location.href = this.form.categories.options[this.form.categories.selectedIndex].value; return false;">Vis fra kategori</button>
+			  </form>
 			</li>
 		</ul>
 		
@@ -254,20 +289,9 @@ function value ($full, $input) {
 		?>
 		<!-- Ferdig med stuff for å fylle ut verdier til input-feltene. -->
 		<h3>Endre saken</h3>
+		<div id="map"></div>
 		
-		<div class="left">
-			<fieldset>
-				<legend>Kart</legend>
-				
-				<div class="map" id="map"> </div>
-				
-				<p class="informative">
-					Navigér i kartet ved å holde venstreknappen inne og bevege musen.
-				</p>
-			</fieldset>
-		</div>
-		
-		<div class="right">
+		<div class="right latest small">
 			<form action="" method="post" enctype="multipart/form-data">
 				<fieldset>
 					<legend>Plassering av problemet</legend>
@@ -316,7 +340,7 @@ function value ($full, $input) {
 					</p>
 					
 					<p>
-						<textarea id="description" name="description" rows="7" <?=addBorder('description')?> cols="50"><?=value($Data,'description')?></textarea> <?= showError ('description') ?>
+						<textarea id="description" name="description" rows="7" <?=addBorder('description')?> cols="40"><?=value($Data,'description')?></textarea> <?= showError ('description') ?>
 					</p>
 					
 					<p>
@@ -345,7 +369,7 @@ function value ($full, $input) {
 					</p>
 
 					<p>
-						<textarea id="reply" name="reply" rows="7" <?=addBorder('reply')?> cols="50"><?=value($Data,'reply')?></textarea>
+						<textarea id="reply" name="reply" rows="7" <?=addBorder('reply')?> cols="40"><?=value($Data,'reply')?></textarea>
 					</p>
 				</fieldset>	
 				<fieldset>

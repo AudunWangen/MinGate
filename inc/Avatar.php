@@ -32,16 +32,16 @@ class Avatar {
 	private $_ResizeImg		= true;
 	
 	//Max width of image
-	private $_MaxImageWidth	= 140;
+	private $_MaxImageWidth	= 800;
 	
 	//Max height of image
-	private $_MaxImageHeight= 160;
+	private $_MaxImageHeight= 600;
 	
 	//Desired width of thubmnails
-	private $_MaxThumbWidth	= 60;
+	private $_MaxThumbWidth	= 300;
 	
 	//Desired height of thumbnails
-	private $_MaxThumbHeight= 60;
+	private $_MaxThumbHeight= 225;
 	
 	//Whether we shall add waterwark
 	private $_Watermark	= true;

@@ -3,13 +3,18 @@
 	padding:0;
 }
 
+html {
+	height: 100%;
+}
+
 body {
 	background:#e1e1e1;
-	padding-top:20px;
+	margin-top:20px;
 	font-family:Arial, sans-serif;
 	color:#000;
 	font-size:1em;
-	line-height:22px
+	line-height:22px;
+	height: 100%;
 }
 
 img.avatar {
@@ -17,7 +22,8 @@ img.avatar {
 }
 
 div.wrapper {
-	width:960px;
+        max-width: 1280px;
+	height:100%;
 	margin:0 auto;
 }
 
@@ -26,35 +32,34 @@ div.content {
 	padding:20px;
 	margin-top:20px;
 	box-shadow:0px -5px 10px #ccc;
-	overflow:auto;
 	position:relative;
+        height: 100%;
+        min-height: 1024px;
 }
 
-div.map {
-	width:100%;
-	height:500px
+#map {
+	height:70%;
+	width:70%;
+	float: left;
 }
 
 div.left, div.right {
-	width:460px;
 	float:left;
 }
 
 div.left {
-	width:450px;
-	margin-right:10px
+	margin-right:10px;
+        height: 100%;
 }
 
-div.large {
-	width:680px;
-}
-
-div.small {
-	width:208px;
+div.right {
+	margin-left: 10px;
 }
 
 div.latest {
-	background:#eee;
+	background-color:#eee;
+        color: #000;
+        width: 25%;
 	border:1px dotted #ddd;
 	padding:0px 10px;
 }

@@ -145,70 +145,72 @@ function value ($input) {
 	return FALSE;
 }
 
-?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+?><!DOCTYPE html>
+<html>
 <head>
 	<title>MinGate - Opprett ny sak</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	
-	<link rel="stylesheet" type="text/css" media="print, projection, screen" href="style.css" />
-	
-	<script src="http://maps.google.com/maps?file=api&v=2&key=<?=GOOGLE_API_KEY?>" type="text/javascript"></script>
-	
-	<script type="text/javascript" charset="utf-8" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
-	<script type="text/javascript" charset="utf-8" src="js/jquery.tipTip.min.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" media="print, projection, screen" href="style.css" />
+		<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=<?=GOOGLE_API_KEY?>&amp;sensor=false"></script>
+    <script type="text/javascript" charset="utf-8" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+		<script type="text/javascript" charset="utf-8" src="js/jquery.tipTip.min.js"></script>
+		
+		<script type="text/javascript">
+			var center = new google.maps.LatLng(<?=CENTER_LON?>, <?=CENTER_LAT?>);
+      var location;
+      var map;
+      var marker;
 
-	<script type="text/javascript">
-	$(function() {
-	
-		$('#switchCategory').click (function () {
-			var category = $('#type :selected').val();
-			
-			if (category != 0) {
-				location.href = 'view.php?category=' + category;
-			} else {
-				location.href = 'view.php';
+			function initialize() {
+				var mapOptions = {
+						zoom: <?=MAP_ZOOM?>,
+						center: center,
+						mapTypeId: google.maps.MapTypeId.ROADMAP
+				};
+				
+				map = new google.maps.Map(document.getElementById('map'),
+						mapOptions);
+
+				google.maps.event.addListener(map, 'click', function(event){
+          placeMarker(event.latLng);
+        });
 			}
-		});
-	
-		var map = new GMap2(document.getElementById("map"));
-		map.addControl(new GLargeMapControl());
-		map.addControl(new GMapTypeControl());
-		map.addControl(new GScaleControl());
-		map.setCenter(new GLatLng(60.191335, 12.009258), 11, G_NORMAL_MAP);
 
-		//map.centerAndZoom(new GPoint(9.67002, 59.10055), 6);
-		 
-		// Recenter Map and add Coords by clicking the map
-		GEvent.addListener(map, 'click', function(overlay, point) {
-			var url = 'index.php?lat=' + point.y + '&lon=' + point.x;
-			//alert (url);
-			
-			map.clearOverlays();
-			
-			$.getJSON (url, function (data) {
-				if (data.kommune_id != <?= MUNICIPAL_ID ?>) {
-					alert ('Du kan bare legge til områder innen Kongsvinger');
-				} else {
-					$('#closest_address').show();
-					$('#closest_address span').html (data.zip + ', ' + data.name);
-					$('#lat').val (point.y);
-					$('#lon').val (point.x);
-					
-					var marker = new GMarker(new GLatLng(point.y, point.x));
-					map.addOverlay(marker);
-				}
-			});
-			
-		});
-		
-		
-	});
+      function placeMarker(position){
+        // Create or move marker
+        if (marker == undefined){
+          marker = new google.maps.Marker({
+            position: position,
+            map: map,
+            draggable: true,
+            icon: "img/pending.png"
+          });
+        }
+        else {
+          marker.setPosition(position);
+        }
+        map.panTo(position);
+        
+        // Get municipality through JSON
+        var url = 'index.php?lat=' + position.lat() + '&lon=' + position.lng();
+        $.getJSON(url, function (data) {
+          // Is this the right municipality?
+          if (data.kommune_id != <?= MUNICIPAL_ID ?>) {
+            alert ("Du kan ikke legge til saker i " + data.name);
+          } else {
+            $('#lat').val (position.lat());
+            $('#lon').val (position.lng());
+          }
+        });
+
+      }
+
+			google.maps.event.addDomListener(window, 'load', initialize);
 	</script>
 </head>
 <body>
-
-<div class="wrapper">
+  <div class="wrapper">
 
 	<h1><a href="./">MinGate</a></h1>
 	<h2>Opprett ny sak</h2>
@@ -243,20 +245,9 @@ function value ($input) {
 		<?php else: ?>
 		
 		<h3>Send inn klage / Lag ny sak</h3>
-		
-		<div class="left">
-			<fieldset>
-				<legend>Kart</legend>
-				
-				<div class="map" id="map"> </div>
-				
-				<p class="informative">
-					Navigér i kartet ved å holde venstreknappen inne og bevege musen.
-				</p>
-			</fieldset>
-		</div>
-		
-		<div class="right">
+				<div id="map"></div>
+
+		<div class="right latest small">
 			<form action="" method="post" enctype="multipart/form-data">
 				<fieldset>
 					<legend>Plassering av problemet</legend>
@@ -305,7 +296,7 @@ function value ($input) {
 					</p>
 					
 					<p>
-						<textarea id="description" name="description" rows="7" <?=addBorder('description')?> cols="50"><?=value('description')?></textarea> <?= showError ('description') ?>
+						<textarea id="description" name="description" rows="7" <?=addBorder('description')?> cols="40"><?=value('description')?></textarea> <?= showError ('description') ?>
 					</p>
 					
 					<p>

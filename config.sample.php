@@ -3,14 +3,15 @@ header ('Content-type:text/html;charset=utf-8');
 
 // Database
 define ('DB_HOST', 'localhost');
-define ('DB_USER', 'fiksgate');
-define ('DB_PW', 'fiksgate');
-define ('DB_NAME', 'fiksgate');
+define ('DB_USER', '');
+define ('DB_PW', '');
+define ('DB_NAME', 'mingate');
 
 // Application
 define ('MUNICIPAL_ID', 402); // See database table postal_municipal (PS! No leading 0)
-define ('GOOGLE_API_KEY', 'ABQIAAAAziwQ4P9Qto7VoNQ5zMyz9xS1NvSkQuZCcMfLok91DzR4dG0fUxT-liTrUWv3nUJJ4ZSasDiikRW3Gw');
-
+define ('GOOGLE_API_KEY', '');
+define ('CENTER_LON', '60.18936');
+define ('CENTER_LAT', '11.997306');
 
 mysql_connect (DB_HOST, DB_USER, DB_PW);
 mysql_select_db (DB_NAME);
