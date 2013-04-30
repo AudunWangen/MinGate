@@ -137,7 +137,7 @@ if (isset ($_GET['category'])) {
 								<li><strong>Status:</strong> <?=escape_html ($Data['statusName']) ?></li>
 								<li><strong>Registrert:</strong> <?=date ('d.m.Y', $Data['timestamp']) ?></li>
 								<li><strong>Kategori:</strong> <a href="?category=<?=$Data['category_id'] ?>"><?=escape_html ($Data['categoryName']) ?></a></li>
-								<li><strong>Beskrivelse:</strong> <?=escape_html ($Data['description']) ?><br /><img src="uploads/thumbs/<?=$Data['picture']?>.jpg" alt="<?=$Data['address']?>" /></li>
+								<li><strong>Beskrivelse:</strong> <?=escape_html ($Data['description']) ?><br /><img src="../uploads/thumbs/<?=$Data['picture']?>.jpg" alt="<?=$Data['address']?>" /></li>
 								<li><strong>Svar:</strong> <?=escape_html ($Data['reply']) ?>
                 <br /><a href="submit.php?case_id=<?=$Data['case_id']?>">Endre</a></li>
 							</ul>

@@ -248,7 +248,7 @@ function value ($input) {
 				<div id="map"></div>
 
 		<div class="right latest small">
-			<form action="" method="post" enctype="multipart/form-data">
+			<form action="#" method="post" enctype="multipart/form-data">
 				<fieldset>
 					<legend>Plassering av problemet</legend>
 					
