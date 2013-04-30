@@ -12,6 +12,8 @@ define ('MUNICIPAL_ID', 402); // See database table postal_municipal (PS! No lea
 define ('GOOGLE_API_KEY', '');
 define ('CENTER_LON', '60.18936');
 define ('CENTER_LAT', '11.997306');
+define ('MAP_ZOOM', '12');
+define ('CONTACTPAGE', 'https://github.com/AudunWangen/MinGate');
 
 mysql_connect (DB_HOST, DB_USER, DB_PW);
 mysql_select_db (DB_NAME);

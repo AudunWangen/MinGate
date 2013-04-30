@@ -217,9 +217,9 @@ function value ($input) {
 	
 	<div class="content">
 		<ul class="menu">
-			<li><a href="index.php">Min gate</a></li>
+			<li><a href="index.php">Fiks nabolaget mitt</a></li>
 			<li><a href="submit.php">Registrer sak</a></li>
-			<li><a href="view.php">Alle saker</a></li>
+			<li><a href="index.php?category=alle">Alle saker</a></li>
 			<li><a href="info.php">Kontakt oss</a></li>
 			<li class="search">
 				<select name="categories" id="type">

@@ -29,6 +29,8 @@ if (isset ($_GET['category'])) {
 			<?php
 				if (isset ($_GET['case_id'])) {
 					$SQL = 'SELECT c.name as categoryName, p.lat, p.lon, p.case_id, p.address, p.description, p.reply, s.type FROM problems p INNER JOIN categories c INNER JOIN statuses s WHERE p.category_id = c.category_id AND p.status_id = s.status_id AND p.case_id = ' . $_GET['case_id'];
+				} else if ($_GET['category'] == 'alle') {
+					$SQL = 'SELECT c.name as categoryName, p.lat, p.lon, p.case_id, p.address, s.type FROM problems p INNER JOIN categories c INNER JOIN statuses s WHERE p.category_id = c.category_id AND p.status_id = s.status_id ORDER BY timestamp DESC';					
 				} else if (isset ($_GET['category'])) {
 					$SQL = 'SELECT c.category_id, c.name as categoryName, p.lat, p.lon, p.case_id, p.address, s.type FROM problems p INNER JOIN categories c INNER JOIN statuses s WHERE p.category_id = c.category_id AND p.status_id = s.status_id AND p.category_id = ' . $_GET['category'];
 				} else {
@@ -105,8 +107,8 @@ if (isset ($_GET['category'])) {
 			<div class="content">
 				<ul class="menu">
 					<li><a href="index.php">Fiks nabolaget mitt</a></li>
-					<li><a href="submit.php">Registrer sak</a></li>
-					<li><a href="view.php">Alle saker</a></li>
+					<li><a href="../submit.php">Registrer sak</a></li>
+					<li><a href="index.php?category=alle">Alle saker</a></li>
 					<li><a href="http://www.kongsvinger.kommune.no/no/Artikler/Kontakt-oss/">Kontakt oss</a></li>
 					<li class="search">
 						<form>
@@ -142,6 +144,15 @@ if (isset ($_GET['category'])) {
                                                 <?php endwhile ?>
 
 					<?
+					} else if ($_GET['category'] == 'alle') {
+						?><h3>Alle saker</h3><?
+																	$SQL = 'SELECT c.category_id, c.name as categoryName, p.case_id, p.address, p.description, p.timestamp, s.type FROM problems p INNER JOIN categories c INNER JOIN statuses s WHERE p.category_id = c.category_id AND p.status_id = s.status_id';
+																	$SQL = mysql_query ($SQL);
+											            ?><ul><?
+																	while ($Data = mysql_fetch_assoc ($SQL)): ?>
+																		<li class="<?=$Data['type']?>"><span><?=date ('d.m.Y', $Data['timestamp']) ?> <a href="?case_id=<?=escape_html ($Data['case_id']) ?>"><?=escape_html ($Data['address']) ?></a><br /><strong>Beskrivelse:</strong> <?=escape_html ($Data['description']) ?><br /><a href="submit.php?case_id=<?=$Data['case_id']?>">Endre</a></span></li>
+																	<?php endwhile ?>
+														</ul><?
 					} else if (isset ($_GET['category'])) {
 						?><h3>Saker i kategorien  <?
             $SQL = "SELECT c.name as categoryName from categories c where c.category_id = " . $_GET['category'];
