@@ -148,7 +148,7 @@ function value ($input) {
 ?><!DOCTYPE html>
 <html>
 <head>
-	<title>MinGate - Opprett ny sak</title>
+	<title>Fiks nabolaget mitt - Opprett ny sak</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 		<meta charset="utf-8">
 		<link rel="stylesheet" type="text/css" media="print, projection, screen" href="style.css" />
@@ -212,7 +212,7 @@ function value ($input) {
 <body>
   <div class="wrapper">
 
-	<h1><a href="./">MinGate</a></h1>
+	<h1><a href="./">Fiks nabolaget mitt</a></h1>
 	<h2>Opprett ny sak</h2>
 	
 	<div class="content">
@@ -222,16 +222,18 @@ function value ($input) {
 			<li><a href="index.php?category=alle">Alle saker</a></li>
 			<li><a href="info.php">Kontakt oss</a></li>
 			<li class="search">
+			  <form>
 				<select name="categories" id="type">
 					<option value="0">Velg</option>
 					<?php
 					$SQL = mysql_query ('SELECT * FROM categories ORDER BY name ASC');
 					
 					while ($Data = mysql_fetch_assoc ($SQL)): ?>
-					<option value="<?=urlencode ($Data['name'])?>"><?=$Data['name']?></option>
+					  <option value="index.php?category=<?=$Data['category_id']?>"><?=$Data['name']?></option>
 					<?php endwhile ?>
 				</select>
-				<button type="submit" id="switchCategory">Vis fra kategori</button>
+				<button type="submit" id="switchCategory" onClick="top.location.href = this.form.categories.options[this.form.categories.selectedIndex].value; return false;">Vis fra kategori</button>
+			  </form>
 			</li>
 		</ul>
 		
