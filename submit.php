@@ -158,9 +158,7 @@ function value ($input) {
 		
 		<script type="text/javascript">
 			var center = new google.maps.LatLng(<?=CENTER_LON?>, <?=CENTER_LAT?>);
-      var location;
       var map;
-      var marker;
 
 			function initialize() {
 				var mapOptions = {
@@ -179,6 +177,7 @@ function value ($input) {
 
       function placeMarker(position){
         // Create or move marker
+	var marker;
         if (marker == undefined){
           marker = new google.maps.Marker({
             position: position,
@@ -298,7 +297,7 @@ function value ($input) {
 					</p>
 					
 					<p>
-						<textarea id="description" name="description" rows="7" <?=addBorder('description')?> cols="40"><?=value('description')?></textarea> <?= showError ('description') ?>
+						<textarea id="description" name="description" rows="7" <?=addBorder('description')?> style="width: 97%"><?=value('description')?></textarea> <?= showError ('description') ?>
 					</p>
 					
 					<p>
