@@ -196,7 +196,7 @@ function value ($input) {
         $.getJSON(url, function (data) {
           // Is this the right municipality?
           if (data.kommune_id != <?= MUNICIPAL_ID ?>) {
-            alert ("Du kan ikke legge til saker i " + data.name);
+            alert ("Du kan ikke legge til saker i " + data.name + ". Gå til http://www.fiksgatami.no/ for å legge inn problemer i andre kommuner.");
           } else {
             $('#lat').val (position.lat());
             $('#lon').val (position.lng());

@@ -65,11 +65,11 @@ div.latest {
 }
 
 div.latest h3 {
-	font-size:0.9em
+	font-size:0.9em;
 }
 
 div.latest ul, div.latest h4, ul.latest {
-	font-size:0.8em
+	font-size:0.8em;
 }
 
 ul.latest li {
@@ -79,33 +79,33 @@ ul.latest li {
 }
 
 div.latest ul {
-	list-style:square inside
+	list-style:square inside;
 }
 
 div.latest ul li.pending, ul.latest li.pending {
-	color:red
+	list-style-image:url('img/pending-mini.png');
 }
 
 div.latest ul li.open, ul.latest li.open {
-	color:orange
+	list-style-image:url('img/open-mini.png');
 }
 
 div.latest ul li.close, ul.latest li.close {
-	color:green
+	list-style-image:url('img/close-mini.png');
 }
 
 div.latest ul li span, ul.latest li span {
-	color:#000
+	color:#000;
 }
 
 li.highlight {
 	background:#fffccc;
-	padding-left:5px
+	padding-left:5px;
 }
 
 h1, h2 {
 	font-family:Georgia, Arial, Helvetica, Sans-serif;
-	font-size:1.5em
+	font-size:1.5em;
 }
 
 h1 {
@@ -144,12 +144,12 @@ ul {
 
 p {
 	padding:5px 0px;
-	font-size:0.9em
+	font-size:0.9em;
 }
 
 p.informative {
 	color:#555;
-	font-size:0.8em
+	font-size:0.8em;
 }
 
 label {
@@ -157,20 +157,20 @@ label {
 	font-size:0.9em;
 	min-width:90px;
 	margin:1px 0px;
-	display:inline-block
+	display:inline-block;
 }
 
 span.error {
 	color:#a30002;
 	font-size:0.8em;
-	font-weight:bold
+	font-weight:bold;
 }
 
 input[type="text"], input[type="file"] {
 	width:250px;
 	padding:3px;
 	margin:1px 0px;
-	font-size:1em
+	font-size:1em;
 }
 
 button {
@@ -179,17 +179,17 @@ button {
 	color:#fff;
 	text-alig:center;
 	padding:2px 10px;
-	font-weight:bold
+	font-weight:bold;
 }
 
 p#closest_address {
-	display:none
+	display:none;
 }
 
 p#closest_address span {
 	font-family:monospace;
 	background:#eee;
-	padding:1px
+	padding:1px;
 }
 
 ul.menu {
@@ -213,20 +213,20 @@ ul.menu li:last-child, ul.menu li.search {
 }
 
 a {
-	color:#1b6289
+	color:#1b6289;
 }
 
 a:hover {
-	color:#a30002
+	color:#a30002;
 }
 
 fieldset {
 	border:1px solid #ccc;
-	padding:5px
+	padding:5px;
 }
 
 legend {
 	font-weight:bold;
-	font-size:0.9em
+	font-size:0.9em;
 }
 
